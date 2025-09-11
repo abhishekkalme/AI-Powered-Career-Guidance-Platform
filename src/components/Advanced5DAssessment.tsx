@@ -20,7 +20,7 @@ import {
 
 interface Question {
   id: string;
-  category: '5d-category';
+  category: string;
   dimension: 'orientation' | 'interest' | 'personality' | 'aptitude' | 'eq';
   type: 'likert' | 'multiple-choice' | 'ranking' | 'scenario' | 'slider';
   question: string;
@@ -73,189 +73,744 @@ const assessmentDimensions = [
   }
 ];
 
+// const psychometricQuestions: Question[] = [
+//   // ======================
+//   // ORIENTATION STYLE (10)
+//   // ======================
+//   {
+//     id: "o1",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "likert",
+//     question: "I prefer working on tasks that have clear, structured guidelines.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "o2",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "multiple-choice",
+//     question: "When starting a new project, I typically:",
+//     options: [
+//       "Create a detailed plan before beginning",
+//       "Start with a rough outline and adapt as I go",
+//       "Jump right in and figure it out along the way",
+//       "Research extensively before taking any action",
+//     ],
+//   },
+//   {
+//     id: "o3",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "scenario",
+//     question: "You’re given a complex problem to solve at work:",
+//     scenarios: {
+//       situation: "Your manager assigns you a project with unclear requirements and a tight deadline.",
+//       responses: [
+//         "Ask for clarification and create a structured approach",
+//         "Start working immediately and adjust based on feedback",
+//         "Break it down into smaller, manageable tasks",
+//         "Collaborate with colleagues to brainstorm solutions",
+//       ],
+//     },
+//   },
+//   {
+//     id: "o4",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "likert",
+//     question: "I feel more comfortable following a set process than improvising.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   // {
+//   //   id: "o5",
+//   //   category: "Orientation Style",
+//   //   dimension: "orientation",
+//   //   type: "ranking",
+//   //   question: "Rank these work preferences from most to least important:",
+//   //   options: ["Clear instructions", "Independence", "Collaboration", "Flexibility"],
+//   // },
+//   {
+//     id: "o6",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "multiple-choice",
+//     question: "In group projects, my natural role is:",
+//     options: ["Planner", "Executor", "Innovator", "Coordinator"],
+//   },
+//   {
+//     id: "o7",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "likert",
+//     question: "I enjoy experimenting with new ways of doing things, even without a guide.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "o8",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "scenario",
+//     question: "Your manager asks for a report by tomorrow, but no template is provided.",
+//     scenarios: {
+//       situation: "You are tasked to prepare a report urgently, but no format/template is given.",
+//       responses: [
+//         "Request an example before proceeding",
+//         "Draft your own structure and refine later",
+//         "Focus only on the main points and deliver quickly",
+//         "Ask colleagues how they would approach it",
+//       ],
+//     },
+//   },
+//   {
+//     id: "o9",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "slider",
+//     question: "How structured do you like your work environment to be?",
+//     labels: ["Very unstructured", "Highly structured"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "o10",
+//     category: "Orientation Style",
+//     dimension: "orientation",
+//     type: "likert",
+//     question: "I prefer routine tasks over tasks that constantly change.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+
+//   // ======================
+//   // CAREER INTERESTS (10)
+//   // ======================
+//   // {
+//   //   id: "i1",
+//   //   category: "Career Interests",
+//   //   dimension: "interest",
+//   //   type: "ranking",
+//   //   question: "Rank these activities from most to least appealing:",
+//   //   options: [
+//   //     "Analyzing data and finding patterns",
+//   //     "Creating and designing visual content",
+//   //     "Leading and motivating teams",
+//   //     "Helping and counseling others",
+//   //     "Solving technical problems",
+//   //   ],
+//   // },
+//   {
+//     id: "i2",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "likert",
+//     question: "I enjoy working with cutting-edge technology and innovation.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "i3",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "multiple-choice",
+//     question: "In your ideal work environment, you would be:",
+//     options: [
+//       "Working independently on focused tasks",
+//       "Collaborating with diverse teams",
+//       "Leading projects and making strategic decisions",
+//       "Mentoring and developing others",
+//     ],
+//   },
+//   {
+//     id: "i4",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "likert",
+//     question: "I enjoy solving real-world problems that impact people’s lives.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "i5",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "scenario",
+//     question: "You have free time on the weekend. You’d rather:",
+//     scenarios: {
+//       situation: "It’s the weekend and you have no urgent tasks.",
+//       responses: [
+//         "Work on a creative hobby (art, music, design)",
+//         "Read about science/technology",
+//         "Volunteer for a social cause",
+//         "Plan and organize a community event",
+//       ],
+//     },
+//   },
+//   {
+//     id: "i6",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "likert",
+//     question: "I like taking leadership roles in projects and initiatives.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "i7",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "multiple-choice",
+//     question: "Which activity excites you the most?",
+//     options: [
+//       "Designing something creative",
+//       "Solving analytical problems",
+//       "Helping people",
+//       "Managing and organizing projects",
+//     ],
+//   },
+//   {
+//     id: "i8",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "slider",
+//     question: "How much do you enjoy working with people versus working alone?",
+//     labels: ["Prefer working alone", "Prefer working with people"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "i9",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "likert",
+//     question: "I get satisfaction from mentoring and guiding others.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "i10",
+//     category: "Career Interests",
+//     dimension: "interest",
+//     type: "scenario",
+//     question: "Your manager offers you two projects: one involves coding an AI tool, the other involves leading a client team. You’d choose:",
+//     scenarios: {
+//       situation: "You have to pick between two projects.",
+//       responses: ["AI tool coding", "Leading the client team"],
+//     },
+//   },
+
+//   // ======================
+//   // PERSONALITY TRAITS (10)
+//   // ======================
+//   {
+//     id: "p1",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "likert",
+//     question: "I feel energized when working in groups and social settings.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "p2",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "slider",
+//     question: "How do you handle stress and pressure?",
+//     labels: ["Struggle significantly", "Thrive under pressure"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "p3",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "scenario",
+//     question: "At a team meeting, you typically:",
+//     scenarios: {
+//       situation: "You’re in a brainstorming session with conflicting ideas.",
+//       responses: [
+//         "Listen and synthesize different viewpoints",
+//         "Contribute your own ideas actively",
+//         "Ask probing questions",
+//         "Focus on practical implementation",
+//       ],
+//     },
+//   },
+//   {
+//     id: "p4",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "likert",
+//     question: "I adapt quickly to unexpected changes.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "p5",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "multiple-choice",
+//     question: "Which trait describes you best?",
+//     options: ["Organized", "Creative", "Analytical", "Empathetic"],
+//   },
+//   // {
+//   //   id: "p6",
+//   //   category: "Personality Traits",
+//   //   dimension: "personality",
+//   //   type: "ranking",
+//   //   question: "Rank these personal qualities:",
+//   //   options: ["Ambition", "Patience", "Creativity", "Discipline"],
+//   // },
+//   {
+//     id: "p7",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "likert",
+//     question: "I enjoy being the center of attention.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "p8",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "slider",
+//     question: "How introverted or extroverted do you consider yourself?",
+//     labels: ["Highly introverted", "Highly extroverted"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "p9",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "likert",
+//     question: "I prefer following rules rather than questioning them.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "p10",
+//     category: "Personality Traits",
+//     dimension: "personality",
+//     type: "scenario",
+//     question: "You receive constructive criticism from a supervisor. You:",
+//     scenarios: {
+//       situation: "A manager gives you detailed feedback on your work.",
+//       responses: [
+//         "Appreciate it and apply feedback",
+//         "Feel defensive but reflect later",
+//         "Ignore it and continue as usual",
+//         "Ask for specific improvement steps",
+//       ],
+//     },
+//   },
+
+//   // ======================
+//   // COGNITIVE APTITUDE (10)
+//   // ======================
+//   {
+//     id: "a1",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "multiple-choice",
+//     question: "If the pattern is 2, 6, 18, 54, what comes next?",
+//     options: ["108", "162", "216", "324"],
+//   },
+//   {
+//     id: "a2",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "likert",
+//     question: "I can quickly identify logical inconsistencies in arguments.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "a3",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "scenario",
+//     question: "You need to learn a new software tool for your job:",
+//     scenarios: {
+//       situation: "Your company is implementing a new project management system.",
+//       responses: [
+//         "Read the manual before using it",
+//         "Experiment and learn by doing",
+//         "Take a structured course",
+//         "Ask colleagues for tips",
+//       ],
+//     },
+//   },
+//   {
+//     id: "a4",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "multiple-choice",
+//     question: "What is 15% of 240?",
+//     options: ["24", "30", "36", "40"],
+//   },
+//   {
+//     id: "a5",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "slider",
+//     question: "Rate your numerical problem-solving skills.",
+//     labels: ["Low", "High"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "a6",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "likert",
+//     question: "I find abstract puzzles enjoyable.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "a7",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "scenario",
+//     question: "You encounter an unfamiliar formula in a report:",
+//     scenarios: {
+//       situation: "You’re reading a report and see a formula you don’t know.",
+//       responses: [
+//         "Look it up online",
+//         "Skip it and focus on what you know",
+//         "Try to deduce its meaning",
+//         "Ask an expert immediately",
+//       ],
+//     },
+//   },
+//   {
+//     id: "a8",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "likert",
+//     question: "I can quickly switch between different tasks and mental processes.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "a9",
+//     category: "Cognitive Aptitude",
+//     dimension: "aptitude",
+//     type: "multiple-choice",
+//     question: "If A = 1, B = 2 ... Z = 26, what is the sum of C + A + T?",
+//     options: ["20", "22", "24", "26"],
+//   },
+//   // {
+//   //   id: "a10",
+//   //   category: "Cognitive Aptitude",
+//   //   dimension: "aptitude",
+//   //   type: "ranking",
+//   //   question: "Rank these problem-solving strategies:",
+//   //   options: ["Trial and error", "Logical reasoning", "Step-by-step breakdown", "Intuition"],
+//   // },
+
+//   // ======================
+//   // EMOTIONAL INTELLIGENCE (10)
+//   // ======================
+//   {
+//     id: "e1",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "likert",
+//     question: "I can easily recognize and understand others’ emotions.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "e2",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "scenario",
+//     question: "A colleague seems upset after a meeting. You:",
+//     scenarios: {
+//       situation: "You notice a team member looking distressed after receiving feedback.",
+//       responses: [
+//         "Offer private support",
+//         "Give them space and check later",
+//         "Suggest speaking with the manager",
+//         "Share a similar experience to relate",
+//       ],
+//     },
+//   },
+//   {
+//     id: "e3",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "slider",
+//     question: "How well do you manage your emotions in challenging situations?",
+//     labels: ["Very difficult", "Very well"],
+//     min: 1,
+//     max: 10,
+//   },
+//   {
+//     id: "e4",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "likert",
+//     question: "I can stay calm even when under pressure.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "e5",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "multiple-choice",
+//     question: "When resolving conflicts, I usually:",
+//     options: [
+//       "Look for compromise",
+//       "Stand firm on my position",
+//       "Defer to the other person",
+//       "Seek outside mediation",
+//     ],
+//   },
+//   // {
+//   //   id: "e6",
+//   //   category: "Emotional Intelligence",
+//   //   dimension: "eq",
+//   //   type: "ranking",
+//   //   question: "Rank these emotional skills by importance:",
+//   //   options: ["Self-awareness", "Empathy", "Self-control", "Relationship-building"],
+//   // },
+//   {
+//     id: "e7",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "likert",
+//     question: "I can motivate others when they are feeling low.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "e8",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "scenario",
+//     question: "A teammate takes credit for your work. You:",
+//     scenarios: {
+//       situation: "Your colleague presents your work as their own.",
+//       responses: [
+//         "Confront them immediately",
+//         "Talk privately later",
+//         "Report to manager",
+//         "Ignore it",
+//       ],
+//     },
+//   },
+//   {
+//     id: "e9",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "likert",
+//     question: "I can easily let go of negative emotions after conflicts.",
+//     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+//   },
+//   {
+//     id: "e10",
+//     category: "Emotional Intelligence",
+//     dimension: "eq",
+//     type: "slider",
+//     question: "How empathetic are you towards others?",
+//     labels: ["Low empathy", "High empathy"],
+//     min: 1,
+//     max: 10,
+//   },
+// ];
 const psychometricQuestions: Question[] = [
-  // Orientation Style Questions
+  // ======================
+  // ORIENTATION STYLE (3)
+  // ======================
   {
-    id: 'o1',
-    category: '5d-category',
-    dimension: 'orientation',
-    type: 'likert',
-    question: 'I prefer working on tasks that have clear, structured guidelines',
-    options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
+    id: "o1",
+    category: "Orientation Style",
+    dimension: "orientation",
+    type: "likert",
+    question: "I prefer working on tasks that have clear, structured guidelines.",
+    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
   },
   {
-    id: 'o2',
-    category: '5d-category',
-    dimension: 'orientation',
-    type: 'multiple-choice',
-    question: 'When starting a new project, I typically:',
-    options: [
-      'Create a detailed plan before beginning',
-      'Start with a rough outline and adapt as I go',
-      'Jump right in and figure it out along the way',
-      'Research extensively before taking any action'
-    ]
-  },
-  {
-    id: 'o3',
-    category: '5d-category',
-    dimension: 'orientation',
-    type: 'scenario',
-    question: 'You\'re given a complex problem to solve at work:',
+    id: "o3",
+    category: "Orientation Style",
+    dimension: "orientation",
+    type: "scenario",
+    question: "You’re given a complex problem to solve at work:",
     scenarios: {
-      situation: 'Your manager assigns you a project with unclear requirements and a tight deadline.',
+      situation: "Your manager assigns you a project with unclear requirements and a tight deadline.",
       responses: [
-        'Ask for clarification and create a structured approach',
-        'Start working immediately and adjust based on feedback',
-        'Break it down into smaller, manageable tasks',
-        'Collaborate with colleagues to brainstorm solutions'
-      ]
-    }
+        "Ask for clarification and create a structured approach",
+        "Start working immediately and adjust based on feedback",
+        "Break it down into smaller, manageable tasks",
+        "Collaborate with colleagues to brainstorm solutions",
+      ],
+    },
+  },
+  {
+    id: "o6",
+    category: "Orientation Style",
+    dimension: "orientation",
+    type: "multiple-choice",
+    question: "In group projects, my natural role is:",
+    options: ["Planner", "Executor", "Innovator", "Coordinator"],
   },
 
-  // Interest Questions
+  // ======================
+  // CAREER INTERESTS (3)
+  // ======================
   {
-    id: 'i1',
-    category: '5d-category',
-    dimension: 'interest',
-    type: 'ranking',
-    question: 'Rank these activities from most to least appealing:',
-    options: [
-      'Analyzing data and finding patterns',
-      'Creating and designing visual content',
-      'Leading and motivating teams',
-      'Solving technical problems',
-      'Helping and counseling others'
-    ]
+    id: "i2",
+    category: "Career Interests",
+    dimension: "interest",
+    type: "likert",
+    question: "I enjoy working with cutting-edge technology and innovation.",
+    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
   },
   {
-    id: 'i2',
-    category: '5d-category',
-    dimension: 'interest',
-    type: 'likert',
-    question: 'I enjoy working with cutting-edge technology and innovation',
-    options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
+    id: "i3",
+    category: "Career Interests",
+    dimension: "interest",
+    type: "multiple-choice",
+    question: "In your ideal work environment, you would be:",
+    options: [
+      "Working independently on focused tasks",
+      "Collaborating with diverse teams",
+      "Leading projects and making strategic decisions",
+      "Mentoring and developing others",
+    ],
   },
   {
-    id: 'i3',
-    category: '5d-category',
-    dimension: 'interest',
-    type: 'multiple-choice',
-    question: 'In your ideal work environment, you would be:',
-    options: [
-      'Working independently on focused tasks',
-      'Collaborating closely with diverse teams',
-      'Leading projects and making strategic decisions',
-      'Mentoring and developing others'
-    ]
+    id: "i5",
+    category: "Career Interests",
+    dimension: "interest",
+    type: "scenario",
+    question: "You have free time on the weekend. You’d rather:",
+    scenarios: {
+      situation: "It’s the weekend and you have no urgent tasks.",
+      responses: [
+        "Work on a creative hobby (art, music, design)",
+        "Read about science/technology",
+        "Volunteer for a social cause",
+        "Plan and organize a community event",
+      ],
+    },
   },
 
-  // Personality Questions
+  // ======================
+  // PERSONALITY TRAITS (3)
+  // ======================
   {
-    id: 'p1',
-    category: '5d-category',
-    dimension: 'personality',
-    type: 'likert',
-    question: 'I feel energized when working in groups and social settings',
-    options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
+    id: "p1",
+    category: "Personality Traits",
+    dimension: "personality",
+    type: "likert",
+    question: "I feel energized when working in groups and social settings.",
+    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
   },
   {
-    id: 'p2',
-    category: '5d-category',
-    dimension: 'personality',
-    type: 'slider',
-    question: 'How do you handle stress and pressure?',
+    id: "p3",
+    category: "Personality Traits",
+    dimension: "personality",
+    type: "scenario",
+    question: "At a team meeting, you typically:",
+    scenarios: {
+      situation: "You’re in a brainstorming session with conflicting ideas.",
+      responses: [
+        "Listen and synthesize different viewpoints",
+        "Contribute your own ideas actively",
+        "Ask probing questions",
+        "Focus on practical implementation",
+      ],
+    },
+  },
+  {
+    id: "p5",
+    category: "Personality Traits",
+    dimension: "personality",
+    type: "multiple-choice",
+    question: "Which trait describes you best?",
+    options: ["Organized", "Creative", "Analytical", "Empathetic"],
+  },
+
+  // ======================
+  // COGNITIVE APTITUDE (3)
+  // ======================
+  {
+    id: "a1",
+    category: "Cognitive Aptitude",
+    dimension: "aptitude",
+    type: "multiple-choice",
+    question: "If the pattern is 2, 6, 18, 54, what comes next?",
+    options: ["108", "162", "216", "324"],
+  },
+  {
+    id: "a2",
+    category: "Cognitive Aptitude",
+    dimension: "aptitude",
+    type: "likert",
+    question: "I can quickly identify logical inconsistencies in arguments.",
+    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+  },
+  {
+    id: "a5",
+    category: "Cognitive Aptitude",
+    dimension: "aptitude",
+    type: "slider",
+    question: "Rate your numerical problem-solving skills.",
+    labels: ["Low", "High"],
     min: 1,
     max: 10,
-    labels: ['Struggle significantly', 'Thrive under pressure']
-  },
-  {
-    id: 'p3',
-    category: '5d-category',
-    dimension: 'personality',
-    type: 'scenario',
-    question: 'At a team meeting, you typically:',
-    scenarios: {
-      situation: 'You\'re in a brainstorming session with conflicting ideas being presented.',
-      responses: [
-        'Listen carefully and synthesize different viewpoints',
-        'Actively contribute your own ideas and suggestions',
-        'Ask probing questions to clarify concepts',
-        'Focus on practical implementation of ideas'
-      ]
-    }
   },
 
-  // Aptitude Questions
+  // ======================
+  // EMOTIONAL INTELLIGENCE (3)
+  // ======================
   {
-    id: 'a1',
-    category: '5d-category',
-    dimension: 'aptitude',
-    type: 'multiple-choice',
-    question: 'If the pattern is 2, 6, 18, 54, what comes next?',
-    options: ['108', '162', '216', '324']
+    id: "e1",
+    category: "Emotional Intelligence",
+    dimension: "eq",
+    type: "likert",
+    question: "I can easily recognize and understand others’ emotions.",
+    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
   },
   {
-    id: 'a2',
-    category: '5d-category',
-    dimension: 'aptitude',
-    type: 'likert',
-    question: 'I can quickly identify logical inconsistencies in arguments',
-    options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
-  },
-  {
-    id: 'a3',
-    category: '5d-category',
-    dimension: 'aptitude',
-    type: 'scenario',
-    question: 'You need to learn a new software tool for your job:',
+    id: "e2",
+    category: "Emotional Intelligence",
+    dimension: "eq",
+    type: "scenario",
+    question: "A colleague seems upset after a meeting. You:",
     scenarios: {
-      situation: 'Your company is implementing a new project management system.',
+      situation: "You notice a team member looking distressed after receiving feedback.",
       responses: [
-        'Read the manual thoroughly before using it',
-        'Learn by experimenting and trying features',
-        'Take a structured online course',
-        'Ask colleagues for tips and best practices'
-      ]
-    }
-  },
-
-  // EQ Questions
-  {
-    id: 'e1',
-    category: '5d-category',
-    dimension: 'eq',
-    type: 'likert',
-    question: 'I can easily recognize and understand others\' emotions',
-    options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
+        "Offer private support",
+        "Give them space and check later",
+        "Suggest speaking with the manager",
+        "Share a similar experience to relate",
+      ],
+    },
   },
   {
-    id: 'e2',
-    category: '5d-category',
-    dimension: 'eq',
-    type: 'scenario',
-    question: 'A colleague seems upset after a meeting:',
-    scenarios: {
-      situation: 'You notice a team member looking distressed after receiving feedback.',
-      responses: [
-        'Approach them privately to offer support',
-        'Give them space and check in later',
-        'Suggest they speak with the manager',
-        'Share your own similar experience to relate'
-      ]
-    }
-  },
-  {
-    id: 'e3',
-    category: '5d-category',
-    dimension: 'eq',
-    type: 'slider',
-    question: 'How well do you manage your emotions in challenging situations?',
+    id: "e10",
+    category: "Emotional Intelligence",
+    dimension: "eq",
+    type: "slider",
+    question: "How empathetic are you towards others?",
+    labels: ["Low empathy", "High empathy"],
     min: 1,
     max: 10,
-    labels: ['Very difficult', 'Very well']
-  }
+  },
 ];
+
+
+
+
+interface PersonalityProfile {
+  strengths: string[];
+  workStyle: string;
+  careerFit: string[];
+  developmentAreas: string[];
+  insights: string[];
+}
+interface AssessmentResults {
+  timestamp: string;
+  timeTaken: number;
+  dimensionScores: Record<string, number>;
+  personalityProfile: PersonalityProfile;
+  answers: Record<string, any>;
+  rawScores: Record<string, number>;
+  overallScore: number;
+}
 
 export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -387,27 +942,31 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
         );
 
       case 'scenario':
-        return (
-          <div className="space-y-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <p className="text-blue-900 dark:text-blue-100">
-                <strong>Scenario:</strong> {currentQuestion.scenarios?.situation}
-              </p>
+  return (
+    <div className="space-y-4">
+      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+        <p className="text-blue-900 dark:text-blue-100">
+          <strong>Scenario:</strong> {currentQuestion.scenarios?.situation}
+        </p>
+      </div>
+      <RadioGroup
+        value={answer?.toString() || ''}
+        onValueChange={(value) => handleAnswer(parseInt(value))}
+      >
+        <div className="space-y-3">
+          {currentQuestion.scenarios?.responses.map((response, index) => (
+            <div key={index} className="flex items-center space-x-2">
+              <RadioGroupItem value={index.toString()} id={`response-${index}`} />
+              <Label htmlFor={`response-${index}`} className="cursor-pointer">
+                {response}
+              </Label>
             </div>
-            <RadioGroup value={answer?.toString() || ''} onValueChange={(value) => handleAnswer(parseInt(value))}>
-              <div className="space-y-3">
-                {currentQuestion.scenarios?.responses.map((response, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <RadioGroupItem value={index.toString()} id={`response-${index}`} />
-                    <Label htmlFor={`response-${index}`} className="cursor-pointer">
-                      {response}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </RadioGroup>
-          </div>
-        );
+          ))}
+        </div>
+      </RadioGroup>
+    </div>
+  );
+
 
       case 'slider':
         return (
@@ -540,26 +1099,28 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
   );
 }
 
-function generatePersonalityProfile(scores: Record<string, number>, answers: Record<string, any>) {
-  // Generate insights based on dimension scores
-  const insights = [];
-  
+function generatePersonalityProfile(
+  scores: Record<string, number>,
+  answers: Record<string, any>
+): PersonalityProfile {
+  const insights: string[] = [];
+
   if (scores.orientation > 75) {
     insights.push("You prefer structured, methodical approaches to work and learning.");
   } else if (scores.orientation < 40) {
     insights.push("You thrive in flexible, adaptive environments with room for creativity.");
   }
-  
+
   if (scores.personality > 70) {
     insights.push("You're energized by social interactions and collaborative environments.");
   } else if (scores.personality < 40) {
     insights.push("You work best in quiet, focused environments with minimal distractions.");
   }
-  
+
   if (scores.eq > 80) {
     insights.push("You have strong emotional intelligence and interpersonal skills.");
   }
-  
+
   if (scores.aptitude > 75) {
     insights.push("You demonstrate high cognitive ability and quick learning capacity.");
   }
@@ -573,8 +1134,8 @@ function generatePersonalityProfile(scores: Record<string, number>, answers: Rec
   };
 }
 
-function getTopStrengths(scores: Record<string, number>) {
-  const strengths = [];
+function getTopStrengths(scores: Record<string, number>): string[] {
+  const strengths: string[] = [];
   if (scores.orientation > 70) strengths.push("Strategic Planning");
   if (scores.interest > 70) strengths.push("Intrinsic Motivation");
   if (scores.personality > 70) strengths.push("Team Collaboration");
@@ -583,15 +1144,15 @@ function getTopStrengths(scores: Record<string, number>) {
   return strengths;
 }
 
-function getWorkStyle(scores: Record<string, number>) {
+function getWorkStyle(scores: Record<string, number>): string {
   if (scores.personality > 60 && scores.eq > 60) return "Collaborative Leader";
   if (scores.aptitude > 70 && scores.orientation > 60) return "Analytical Strategist";
   if (scores.interest > 70 && scores.personality < 50) return "Independent Innovator";
   return "Balanced Professional";
 }
 
-function getCareerFit(scores: Record<string, number>) {
-  const fits = [];
+function getCareerFit(scores: Record<string, number>): string[] {
+  const fits: string[] = [];
   if (scores.aptitude > 70 && scores.orientation > 60) fits.push("Technical Roles");
   if (scores.eq > 70 && scores.personality > 60) fits.push("Leadership Positions");
   if (scores.interest > 70) fits.push("Creative Fields");
@@ -599,8 +1160,8 @@ function getCareerFit(scores: Record<string, number>) {
   return fits;
 }
 
-function getDevelopmentAreas(scores: Record<string, number>) {
-  const areas = [];
+function getDevelopmentAreas(scores: Record<string, number>): string[] {
+  const areas: string[] = [];
   if (scores.eq < 60) areas.push("Emotional Intelligence");
   if (scores.personality < 50) areas.push("Team Collaboration");
   if (scores.orientation < 50) areas.push("Strategic Planning");
