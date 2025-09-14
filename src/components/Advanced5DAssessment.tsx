@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
@@ -38,36 +39,36 @@ interface Advanced5DAssessmentProps {
 const assessmentDimensions = [
   {
     id: 'orientation',
-    title: 'Orientation Style',
-    description: 'How you approach work and learning',
+    titleKey: 'assessment.dimensions.orientation.title',
+    descriptionKey: 'assessment.dimensions.orientation.description',
     icon: Target,
     color: 'text-blue-600 dark:text-blue-400'
   },
   {
     id: 'interest',
-    title: 'Career Interests',
-    description: 'What motivates and engages you',
+    titleKey: 'assessment.dimensions.interest.title',
+    descriptionKey: 'assessment.dimensions.interest.description',
     icon: Heart,
     color: 'text-red-600 dark:text-red-400'
   },
   {
     id: 'personality',
-    title: 'Personality Traits',
-    description: 'Your behavioral patterns and preferences',
+    titleKey: 'assessment.dimensions.personality.title',
+    descriptionKey: 'assessment.dimensions.personality.description',
     icon: Users,
     color: 'text-green-600 dark:text-green-400'
   },
   {
     id: 'aptitude',
-    title: 'Cognitive Aptitude',
-    description: 'Your learning and problem-solving abilities',
+    titleKey: 'assessment.dimensions.aptitude.title',
+    descriptionKey: 'assessment.dimensions.aptitude.description',
     icon: Brain,
     color: 'text-purple-600 dark:text-purple-400'
   },
   {
     id: 'eq',
-    title: 'Emotional Intelligence',
-    description: 'Your emotional awareness and social skills',
+    titleKey: 'assessment.dimensions.eq.title',
+    descriptionKey: 'assessment.dimensions.eq.description',
     icon: Zap,
     color: 'text-orange-600 dark:text-orange-400'
   }
@@ -103,7 +104,7 @@ const assessmentDimensions = [
 //     category: "Orientation Style",
 //     dimension: "orientation",
 //     type: "scenario",
-//     question: "You’re given a complex problem to solve at work:",
+//     question: "You're given a complex problem to solve at work:",
 //     scenarios: {
 //       situation: "Your manager assigns you a project with unclear requirements and a tight deadline.",
 //       responses: [
@@ -224,7 +225,7 @@ const assessmentDimensions = [
 //     category: "Career Interests",
 //     dimension: "interest",
 //     type: "likert",
-//     question: "I enjoy solving real-world problems that impact people’s lives.",
+//     question: "I enjoy solving real-world problems that impact people's lives.",
 //     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
 //   },
 //   {
@@ -232,9 +233,9 @@ const assessmentDimensions = [
 //     category: "Career Interests",
 //     dimension: "interest",
 //     type: "scenario",
-//     question: "You have free time on the weekend. You’d rather:",
+//     question: "You have free time on the weekend. You'd rather:",
 //     scenarios: {
-//       situation: "It’s the weekend and you have no urgent tasks.",
+//       situation: "It's the weekend and you have no urgent tasks.",
 //       responses: [
 //         "Work on a creative hobby (art, music, design)",
 //         "Read about science/technology",
@@ -287,7 +288,7 @@ const assessmentDimensions = [
 //     category: "Career Interests",
 //     dimension: "interest",
 //     type: "scenario",
-//     question: "Your manager offers you two projects: one involves coding an AI tool, the other involves leading a client team. You’d choose:",
+//     question: "Your manager offers you two projects: one involves coding an AI tool, the other involves leading a client team. You'd choose:",
 //     scenarios: {
 //       situation: "You have to pick between two projects.",
 //       responses: ["AI tool coding", "Leading the client team"],
@@ -322,7 +323,7 @@ const assessmentDimensions = [
 //     type: "scenario",
 //     question: "At a team meeting, you typically:",
 //     scenarios: {
-//       situation: "You’re in a brainstorming session with conflicting ideas.",
+//       situation: "You're in a brainstorming session with conflicting ideas.",
 //       responses: [
 //         "Listen and synthesize different viewpoints",
 //         "Contribute your own ideas actively",
@@ -466,7 +467,7 @@ const assessmentDimensions = [
 //     type: "scenario",
 //     question: "You encounter an unfamiliar formula in a report:",
 //     scenarios: {
-//       situation: "You’re reading a report and see a formula you don’t know.",
+//       situation: "You're reading a report and see a formula you don't know.",
 //       responses: [
 //         "Look it up online",
 //         "Skip it and focus on what you know",
@@ -508,7 +509,7 @@ const assessmentDimensions = [
 //     category: "Emotional Intelligence",
 //     dimension: "eq",
 //     type: "likert",
-//     question: "I can easily recognize and understand others’ emotions.",
+//     question: "I can easily recognize and understand others' emotions.",
 //     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
 //   },
 //   {
@@ -619,14 +620,14 @@ const psychometricQuestions: Question[] = [
     dimension: "orientation",
     type: "likert",
     question: "I prefer working on tasks that have clear, structured guidelines.",
-    options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
+    options: ["assessment.likert_scale.strongly_disagree", "assessment.likert_scale.disagree", "assessment.likert_scale.neutral", "assessment.likert_scale.agree", "assessment.likert_scale.strongly_agree"],
   },
   {
     id: "o3",
     category: "Orientation Style",
     dimension: "orientation",
     type: "scenario",
-    question: "You’re given a complex problem to solve at work:",
+    question: "You're given a complex problem to solve at work:",
     scenarios: {
       situation: "Your manager assigns you a project with unclear requirements and a tight deadline.",
       responses: [
@@ -675,9 +676,9 @@ const psychometricQuestions: Question[] = [
     category: "Career Interests",
     dimension: "interest",
     type: "scenario",
-    question: "You have free time on the weekend. You’d rather:",
+    question: "You have free time on the weekend. You'd rather:",
     scenarios: {
-      situation: "It’s the weekend and you have no urgent tasks.",
+      situation: "It's the weekend and you have no urgent tasks.",
       responses: [
         "Work on a creative hobby (art, music, design)",
         "Read about science/technology",
@@ -705,7 +706,7 @@ const psychometricQuestions: Question[] = [
     type: "scenario",
     question: "At a team meeting, you typically:",
     scenarios: {
-      situation: "You’re in a brainstorming session with conflicting ideas.",
+      situation: "You're in a brainstorming session with conflicting ideas.",
       responses: [
         "Listen and synthesize different viewpoints",
         "Contribute your own ideas actively",
@@ -761,7 +762,7 @@ const psychometricQuestions: Question[] = [
     category: "Emotional Intelligence",
     dimension: "eq",
     type: "likert",
-    question: "I can easily recognize and understand others’ emotions.",
+    question: "I can easily recognize and understand others' emotions.",
     options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
   },
   {
@@ -813,6 +814,7 @@ interface AssessmentResults {
 }
 
 export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) {
+  const { t } = useTranslation();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [currentDimension, setCurrentDimension] = useState<string>('orientation');
@@ -917,7 +919,7 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
                 <div key={index} className="flex items-center space-x-2">
                   <RadioGroupItem value={index.toString()} id={`option-${index}`} />
                   <Label htmlFor={`option-${index}`} className="cursor-pointer">
-                    {option}
+                    {option.startsWith('assessment.') ? t(option) : option}
                   </Label>
                 </div>
               ))}
@@ -933,7 +935,7 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
                 <div key={index} className="flex items-center space-x-2">
                   <RadioGroupItem value={index.toString()} id={`option-${index}`} />
                   <Label htmlFor={`option-${index}`} className="cursor-pointer">
-                    {option}
+                    {option.startsWith('assessment.') ? t(option) : option}
                   </Label>
                 </div>
               ))}
@@ -1004,10 +1006,10 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2">
             <Brain className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-            5-D Psychometric Career Assessment
+            {t('assessment.title')}
           </CardTitle>
           <CardDescription>
-            Comprehensive evaluation of your orientation style, interests, personality, aptitude, and emotional intelligence
+            {t('assessment.description')}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -1016,7 +1018,7 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium">Overall Progress</span>
+            <span className="text-sm font-medium">{t('assessment.overall_progress')}</span>
             <span className="text-sm text-gray-600 dark:text-gray-400">
               {currentQuestionIndex + 1} of {psychometricQuestions.length}
             </span>
@@ -1036,7 +1038,7 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
             <Card key={dimension.id} className={`${isActive ? 'ring-2 ring-indigo-500' : ''}`}>
               <CardContent className="p-4 text-center">
                 <DimIcon className={`h-6 w-6 mx-auto mb-2 ${dimension.color}`} />
-                <h3 className="font-medium text-sm mb-1">{dimension.title}</h3>
+                <h3 className="font-medium text-sm mb-1">{t(dimension.titleKey)}</h3>
                 <Progress value={progress} className="w-full h-2" />
                 <span className="text-xs text-gray-600 dark:text-gray-400 mt-1 block">
                   {Math.round(progress)}%
@@ -1053,8 +1055,8 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
           <div className="flex items-center gap-3 mb-4">
             <Icon className={`h-8 w-8 ${currentDimensionInfo?.color}`} />
             <div>
-              <CardTitle className="text-lg">{currentDimensionInfo?.title}</CardTitle>
-              <CardDescription>{currentDimensionInfo?.description}</CardDescription>
+              <CardTitle className="text-lg">{currentDimensionInfo ? t(currentDimensionInfo.titleKey) : ''}</CardTitle>
+              <CardDescription>{currentDimensionInfo ? t(currentDimensionInfo.descriptionKey) : ''}</CardDescription>
             </div>
           </div>
           <Badge variant="outline" className="w-fit">
@@ -1073,14 +1075,14 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
             >
-              Previous
+              {t('common.previous')}
             </Button>
             <Button
               onClick={handleNext}
               disabled={answers[currentQuestion.id] === undefined}
               className="bg-indigo-600 hover:bg-indigo-700"
             >
-              {currentQuestionIndex === psychometricQuestions.length - 1 ? 'Complete Assessment' : 'Next'}
+              {currentQuestionIndex === psychometricQuestions.length - 1 ? t('assessment.complete_assessment') : t('common.next')}
             </Button>
           </div>
         </CardContent>
@@ -1091,7 +1093,7 @@ export function Advanced5DAssessment({ onComplete }: Advanced5DAssessmentProps) 
         <CardContent className="pt-6">
           <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <Clock className="h-4 w-4" />
-            Estimated time remaining: {Math.max(1, Math.round((psychometricQuestions.length - currentQuestionIndex - 1) * 0.5))} minutes
+            {t('assessment.estimated_time', { minutes: Math.max(1, Math.round((psychometricQuestions.length - currentQuestionIndex - 1) * 0.5)) })}
           </div>
         </CardContent>
       </Card>

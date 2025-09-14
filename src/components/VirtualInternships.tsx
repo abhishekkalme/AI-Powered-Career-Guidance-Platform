@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -150,6 +151,7 @@ const virtualInternships: VirtualInternship[] = [
 ];
 
 export function VirtualInternships() {
+  const { t } = useTranslation();
   const [selectedInternship, setSelectedInternship] = useState<VirtualInternship | null>(null);
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [userProgress, setUserProgress] = useState<Record<string, number>>({});
@@ -295,7 +297,7 @@ export function VirtualInternships() {
               onClick={() => startInternship(internship)}
               variant={progress > 0 ? "default" : "default"}
             >
-              {progress > 0 ? 'Continue' : 'Start'} Internship
+              {progress > 0 ? t('virtual_internships.continue_internship') : t('virtual_internships.start_internship')}
             </Button>
             {isCompleted && internship.certification && (
               <Button 
@@ -304,7 +306,7 @@ export function VirtualInternships() {
                 className="flex-shrink-0"
               >
                 <Download className="h-4 w-4 mr-2" />
-                Certificate
+                {t('common.download')}
               </Button>
             )}
           </div>
@@ -359,7 +361,7 @@ export function VirtualInternships() {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Experience real-world scenarios in a safe, simulated environment
                 </p>
-                <Button>Launch Simulation</Button>
+                <Button>{t('virtual_internships.launch_simulation')}</Button>
               </div>
             )}
 
@@ -370,17 +372,17 @@ export function VirtualInternships() {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Apply your skills to solve real business problems
                 </p>
-                <Button>Start Project</Button>
+                <Button>{t('virtual_internships.start_project')}</Button>
               </div>
             )}
 
             <div className="flex justify-between">
-              <Button variant="outline">Previous Module</Button>
+              <Button variant="outline">{t('virtual_internships.previous_module')}</Button>
               <Button 
                 onClick={() => completeModule(internship.id, module.id)}
                 disabled={module.completed}
               >
-                {module.completed ? 'Completed' : 'Mark Complete'}
+                {module.completed ? t('virtual_internships.completed') : t('virtual_internships.mark_complete')}
               </Button>
             </div>
           </div>
@@ -401,7 +403,7 @@ export function VirtualInternships() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Button variant="outline" onClick={() => setSelectedInternship(null)}>
-                  ← Back to Internships
+                  ← {t('common.back')}
                 </Button>
                 <div>
                   <CardTitle className="flex items-center gap-2">
@@ -414,14 +416,14 @@ export function VirtualInternships() {
               {isCompleted && selectedInternship.certification && (
                 <Button onClick={() => generateCertificate(selectedInternship)}>
                   <Download className="h-4 w-4 mr-2" />
-                  Download Certificate
+                  {t('virtual_internships.download_certificate')}
                 </Button>
               )}
             </div>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between mb-4">
-              <span className="font-medium">Overall Progress</span>
+              <span className="font-medium">{t('assessment.overall_progress')}</span>
               <span className="text-sm text-gray-600 dark:text-gray-400">{Math.round(progress)}% Complete</span>
             </div>
             <Progress value={progress} className="w-full" />
@@ -433,7 +435,7 @@ export function VirtualInternships() {
           {/* Module List */}
           <Card className="lg:col-span-1">
             <CardHeader>
-              <CardTitle>Modules</CardTitle>
+              <CardTitle>{t('virtual_internships.modules')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -483,9 +485,9 @@ export function VirtualInternships() {
                 <CardContent className="pt-12 pb-12">
                   <div className="text-center">
                     <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                    <h3 className="text-xl font-semibold mb-2">Select a Module to Begin</h3>
+                    <h3 className="text-xl font-semibold mb-2">{t('virtual_internships.select_module')}</h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Choose a module from the left to start your virtual internship experience
+                      {t('virtual_internships.select_module_description')}
                     </p>
                   </div>
                 </CardContent>
@@ -504,10 +506,10 @@ export function VirtualInternships() {
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2">
             <Play className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-            Virtual Internships
+            {t('virtual_internships.title')}
           </CardTitle>
           <CardDescription>
-            Gain real-world experience through simulated work environments with industry experts
+            {t('virtual_internships.description')}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -517,25 +519,25 @@ export function VirtualInternships() {
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">50+</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Available Programs</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('virtual_internships.available_programs')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">95%</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Completion Rate</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('virtual_internships.completion_rate')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">4.8★</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Average Rating</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('virtual_internships.average_rating')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-2">100%</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Free Certificates</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('virtual_internships.free_certificates')}</p>
           </CardContent>
         </Card>
       </div>

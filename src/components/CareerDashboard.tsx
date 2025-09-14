@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -27,6 +28,7 @@ interface CareerDashboardProps {
 }
 
 export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardProps) {
+  const { t } = useTranslation();
   const { careerRecommendations, assessmentResults } = userData;
   const [realTimeData, setRealTimeData] = useState<any>(null);
   const [showJobData, setShowJobData] = useState(false);
@@ -36,10 +38,10 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
     : 0;
 
   const strengthAreas = [
-    { name: 'Analytical Thinking', score: assessmentResults?.scores?.analytical || 85, color: 'text-blue-600' },
-    { name: 'Problem Solving', score: assessmentResults?.scores?.cognitive || 82, color: 'text-green-600' },
-    { name: 'Technical Aptitude', score: assessmentResults?.scores?.technical || 78, color: 'text-purple-600' },
-    { name: 'Communication', score: assessmentResults?.scores?.interpersonal || 80, color: 'text-orange-600' }
+    { nameKey: 'dashboard.strengths.analytical_thinking', score: assessmentResults?.scores?.analytical || 85, color: 'text-blue-600' },
+    { nameKey: 'dashboard.strengths.problem_solving', score: assessmentResults?.scores?.cognitive || 82, color: 'text-green-600' },
+    { nameKey: 'dashboard.strengths.technical_aptitude', score: assessmentResults?.scores?.technical || 78, color: 'text-purple-600' },
+    { nameKey: 'dashboard.strengths.communication', score: assessmentResults?.scores?.interpersonal || 80, color: 'text-orange-600' }
   ];
 
   const industryTrends = [
@@ -59,7 +61,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
               <Target className="h-8 w-8 text-blue-600" />
               <div>
                 <p className="text-2xl font-bold">{overallMatch}%</p>
-                <p className="text-sm text-gray-600">Career Match</p>
+                <p className="text-sm text-gray-600">{t('dashboard.career_match')}</p>
               </div>
             </div>
           </CardContent>
@@ -71,7 +73,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
               <Award className="h-8 w-8 text-green-600" />
               <div>
                 <p className="text-2xl font-bold">{careerRecommendations.length}</p>
-                <p className="text-sm text-gray-600">Career Options</p>
+                <p className="text-sm text-gray-600">{t('dashboard.career_options')}</p>
               </div>
             </div>
           </CardContent>
@@ -83,7 +85,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
               <Lightbulb className="h-8 w-8 text-yellow-600" />
               <div>
                 <p className="text-2xl font-bold">12</p>
-                <p className="text-sm text-gray-600">Skill Gaps</p>
+                <p className="text-sm text-gray-600">{t('dashboard.skill_gaps')}</p>
               </div>
             </div>
           </CardContent>
@@ -95,7 +97,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
               <TrendingUp className="h-8 w-8 text-purple-600" />
               <div>
                 <p className="text-2xl font-bold">+25%</p>
-                <p className="text-sm text-gray-600">Avg. Growth</p>
+                <p className="text-sm text-gray-600">{t('dashboard.avg_growth')}</p>
               </div>
             </div>
           </CardContent>
@@ -104,11 +106,11 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
 
       <Tabs defaultValue="recommendations" className="w-full">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="recommendations">Career Matches</TabsTrigger>
-          <TabsTrigger value="strengths">Your Strengths</TabsTrigger>
-          <TabsTrigger value="market">Live Job Market</TabsTrigger>
-          <TabsTrigger value="trends">Industry Trends</TabsTrigger>
-          <TabsTrigger value="roadmap">Quick Roadmap</TabsTrigger>
+          <TabsTrigger value="recommendations">{t('dashboard.tabs.career_matches')}</TabsTrigger>
+          <TabsTrigger value="strengths">{t('dashboard.tabs.strengths')}</TabsTrigger>
+          <TabsTrigger value="market">{t('dashboard.tabs.live_job_market')}</TabsTrigger>
+          <TabsTrigger value="trends">{t('dashboard.tabs.industry_trends')}</TabsTrigger>
+          <TabsTrigger value="roadmap">{t('dashboard.tabs.quick_roadmap')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="recommendations" className="space-y-6">
@@ -179,7 +181,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
                     </div>
                     <div className="flex space-x-2">
                       <Button onClick={() => onExploreCareer(career)} size="sm" variant="outline">
-                        Explore Path
+                        {t('common.explore')}
                         <ArrowRight className="h-4 w-4 ml-2" />
                       </Button>
                       <Button 
@@ -187,7 +189,7 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
                         size="sm"
                       >
                         <Zap className="h-4 w-4 mr-2" />
-                        Live Data
+                        {t('dashboard.live_data')}
                       </Button>
                     </div>
                   </div>
@@ -208,9 +210,9 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
         <TabsContent value="strengths" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Your Key Strengths</CardTitle>
+              <CardTitle>{t('dashboard.strengths.title')}</CardTitle>
               <CardDescription>
-                Based on your assessment results, here are your top strength areas
+                {t('dashboard.strengths.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -218,14 +220,14 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
                 {strengthAreas.map((strength, index) => (
                   <div key={index} className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className={`font-medium ${strength.color}`}>{strength.name}</span>
+                      <span className={`font-medium ${strength.color}`}>{t(strength.nameKey)}</span>
                       <span className="text-sm font-semibold">{strength.score}%</span>
                     </div>
                     <Progress value={strength.score} className="h-3" />
                     <div className="text-xs text-gray-600">
-                      {strength.score >= 85 ? 'Exceptional strength - leverage this in your career' :
-                       strength.score >= 75 ? 'Strong skill - continue developing' :
-                       'Room for improvement - consider targeted learning'}
+                      {strength.score >= 85 ? t('dashboard.strengths.exceptional') :
+                       strength.score >= 75 ? t('dashboard.strengths.strong') :
+                       t('dashboard.strengths.improvement')}
                     </div>
                   </div>
                 ))}
@@ -235,33 +237,33 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
 
           <Card>
             <CardHeader>
-              <CardTitle>Personality Insights</CardTitle>
+              <CardTitle>{t('dashboard.personality_insights.title')}</CardTitle>
               <CardDescription>
-                Your work style and personality traits
+                {t('dashboard.personality_insights.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <h4 className="font-medium">Work Style</h4>
+                  <h4 className="font-medium">{t('dashboard.personality_insights.work_style')}</h4>
                   <p className="text-sm text-gray-600">
                     You work best in collaborative environments with structured processes and clear goals.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="font-medium">Leadership Potential</h4>
+                  <h4 className="font-medium">{t('dashboard.personality_insights.leadership_potential')}</h4>
                   <p className="text-sm text-gray-600">
                     Strong analytical skills and communication abilities suggest good leadership potential.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="font-medium">Learning Style</h4>
+                  <h4 className="font-medium">{t('dashboard.personality_insights.learning_style')}</h4>
                   <p className="text-sm text-gray-600">
                     You prefer hands-on learning with immediate practical applications.
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="font-medium">Risk Tolerance</h4>
+                  <h4 className="font-medium">{t('dashboard.personality_insights.risk_tolerance')}</h4>
                   <p className="text-sm text-gray-600">
                     Moderate risk tolerance - comfortable with calculated risks and innovation.
                   </p>
@@ -332,9 +334,9 @@ export function CareerDashboard({ userData, onExploreCareer }: CareerDashboardPr
         <TabsContent value="roadmap" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Your 3-Month Quick Start Plan</CardTitle>
+              <CardTitle>{t('dashboard.quick_plan.title')}</CardTitle>
               <CardDescription>
-                Immediate steps to begin your career journey
+                {t('dashboard.quick_plan.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>

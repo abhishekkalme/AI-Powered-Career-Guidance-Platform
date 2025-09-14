@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -17,38 +18,40 @@ import {
 } from 'lucide-react';
 
 export function HomePage() {
+  const { t } = useTranslation();
+  
   const features = [
     {
       icon: Brain,
-      title: '5-D Psychometric Assessment',
-      description: 'Comprehensive evaluation covering orientation, interests, personality, aptitude, and emotional intelligence.',
+      titleKey: 'home.features.assessment.title',
+      descriptionKey: 'home.features.assessment.description',
       color: 'text-blue-600 dark:text-blue-400'
     },
     {
       icon: Target,
-      title: 'Virtual Internships',
-      description: 'Gain real-world experience through industry-guided simulations and projects with certificates.',
+      titleKey: 'home.features.virtual_internships.title',
+      descriptionKey: 'home.features.virtual_internships.description',
       color: 'text-green-600 dark:text-green-400'
     },
     {
       icon: TrendingUp,
-      title: 'Expert Mentoring',
-      description: '1:1 guidance from certified international coaches and industry professionals.',
+      titleKey: 'home.features.expert_mentoring.title',
+      descriptionKey: 'home.features.expert_mentoring.description',
       color: 'text-purple-600 dark:text-purple-400'
     },
     {
       icon: Users,
-      title: 'AI Career Planning',
-      description: 'Intelligent career roadmaps, subject combinations, and personalized development plans.',
+      titleKey: 'home.features.ai_planning.title',
+      descriptionKey: 'home.features.ai_planning.description',
       color: 'text-orange-600 dark:text-orange-400'
     }
   ];
 
   const stats = [
-    { label: 'Career Paths Analyzed', value: '50,000+', icon: Target },
-    { label: 'Success Stories', value: '15,000+', icon: Star },
-    { label: 'Industry Experts', value: '500+', icon: Users },
-    { label: 'Learning Resources', value: '10,000+', icon: Brain }
+    { labelKey: 'home.stats.career_paths', value: '50,000+', icon: Target },
+    { labelKey: 'home.stats.success_stories', value: '15,000+', icon: Star },
+    { labelKey: 'home.stats.industry_experts', value: '500+', icon: Users },
+    { labelKey: 'home.stats.learning_resources', value: '10,000+', icon: Brain }
   ];
 
   const testimonials = [
@@ -79,26 +82,25 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
-              AI-Powered Career Guidance
+              {t('home.hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Discover Your Perfect
-              <span className="text-indigo-600 dark:text-indigo-400 block">Career Path</span>
+              {t('home.hero.title')}
+              <span className="text-indigo-600 dark:text-indigo-400 block">{t('home.hero.title_highlight')}</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
-              Get personalized career recommendations, skill assessments, and expert guidance 
-              to accelerate your professional growth with our AI-powered platform.
+              {t('home.hero.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/onboarding">
                 <Button size="lg" className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700">
-                  Start Your Journey
+                  {t('home.hero.start_journey')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/dashboard">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  View Demo
+                  {t('home.hero.view_demo')}
                 </Button>
               </Link>
             </div>
@@ -121,7 +123,7 @@ export function HomePage() {
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {stat.label}
+                    {t(stat.labelKey)}
                   </div>
                 </div>
               );
@@ -135,11 +137,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Powerful Features to Guide Your Career
+              {t('home.features.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Our comprehensive platform combines AI technology with expert insights 
-              to provide you with everything you need for career success.
+              {t('home.features.description')}
             </p>
           </div>
           
@@ -152,11 +153,11 @@ export function HomePage() {
                     <div className={`w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4`}>
                       <Icon className={`h-6 w-6 ${feature.color}`} />
                     </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                    <CardTitle className="text-xl">{t(feature.titleKey)}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base">
-                      {feature.description}
+                      {t(feature.descriptionKey)}
                     </CardDescription>
                   </CardContent>
                 </Card>
@@ -171,10 +172,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              How CareerAI Works
+              {t('home.how_it_works.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              Get started in just a few simple steps
+              {t('home.how_it_works.description')}
             </p>
           </div>
           
@@ -184,10 +185,10 @@ export function HomePage() {
                 <Users className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                1. Create Your Profile
+                1. {t('home.how_it_works.step1.title')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Tell us about your background, interests, and career aspirations
+                {t('home.how_it_works.step1.description')}
               </p>
             </div>
             
@@ -196,10 +197,10 @@ export function HomePage() {
                 <Brain className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                2. Take AI Assessments
+                2. {t('home.how_it_works.step2.title')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Complete comprehensive tests to evaluate your skills and personality
+                {t('home.how_it_works.step2.description')}
               </p>
             </div>
             
@@ -208,10 +209,10 @@ export function HomePage() {
                 <Target className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                3. Get Your Roadmap
+                3. {t('home.how_it_works.step3.title')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Receive personalized career recommendations and learning paths
+                {t('home.how_it_works.step3.description')}
               </p>
             </div>
           </div>
@@ -223,10 +224,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Success Stories
+              {t('home.testimonials.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              See how CareerAI has transformed careers
+              {t('home.testimonials.description')}
             </p>
           </div>
           
@@ -268,15 +269,15 @@ export function HomePage() {
       <section className="py-16 md:py-20 bg-indigo-600 dark:bg-indigo-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Career?
+            {t('home.cta.title')}
           </h2>
           <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who have discovered their perfect career path with CareerAI
+            {t('home.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/onboarding">
               <Button size="lg" variant="secondary" className="w-full sm:w-auto">
-                Get Started Free
+                {t('home.cta.get_started')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Badge } from './ui/badge';
 import { Switch } from './ui/switch';
 import { Button } from './ui/button';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { 
   Brain, 
   Target, 
@@ -27,21 +29,22 @@ interface LayoutProps {
 }
 
 const navigationItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: Target },
-  { path: '/career-report', label: 'Career Report', icon: TrendingUp },
-  { path: '/skills', label: 'Skills', icon: Map },
-  { path: '/career-path', label: 'Career Path', icon: Map },
-  { path: '/virtual-internships', label: 'Internships', icon: GraduationCap },
-  { path: '/mentoring', label: 'Mentoring', icon: Users },
-  { path: '/learning', label: 'Learning', icon: BookOpen },
-  { path: '/lecturers', label: 'Lecturers', icon: GraduationCap },
-  { path: '/ai-chat', label: 'AI Counselor', icon: MessageSquare },
-  { path: '/profile', label: 'Profile', icon: Users },
+  { path: '/dashboard', labelKey: 'navigation.dashboard', icon: Target },
+  { path: '/career-report', labelKey: 'navigation.career_report', icon: TrendingUp },
+  { path: '/skills', labelKey: 'navigation.skills', icon: Map },
+  { path: '/career-path', labelKey: 'navigation.career_path', icon: Map },
+  { path: '/virtual-internships', labelKey: 'navigation.virtual_internships', icon: GraduationCap },
+  { path: '/mentoring', labelKey: 'navigation.mentoring', icon: Users },
+  { path: '/learning', labelKey: 'navigation.learning', icon: BookOpen },
+  { path: '/lecturers', labelKey: 'navigation.lecturers', icon: GraduationCap },
+  { path: '/ai-chat', labelKey: 'navigation.ai_counselor', icon: MessageSquare },
+  { path: '/profile', labelKey: 'navigation.profile', icon: Users },
 ];
 
 export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   
   const isOnboardingRoute = ['/onboarding', '/assessment'].includes(location.pathname);
@@ -59,11 +62,11 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
                 <Brain className="h-5 w-5 md:h-6 md:w-6 text-white" />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">CareerAI</h1>
-                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">AI-Powered Career Guidance Platform</p>
+                <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">{t('header.title')}</h1>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">{t('header.subtitle')}</p>
               </div>
               <div className="sm:hidden">
-                <h1 className="text-lg font-bold text-gray-900 dark:text-white">CareerAI</h1>
+                <h1 className="text-lg font-bold text-gray-900 dark:text-white">{t('header.title')}</h1>
               </div>
             </Link>
 
@@ -86,7 +89,7 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
                       )}
                     >
                       <Icon className="h-4 w-4" />
-                      <span>{item.label}</span>
+                      <span>{t(item.labelKey)}</span>
                     </Link>
                   );
                 })}
@@ -95,13 +98,16 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
 
             {/* Right Side */}
             <div className="flex items-center space-x-3 md:space-x-4">
+              {/* Language Switcher */}
+              <LanguageSwitcher />
+              
               {/* Theme Toggle */}
               <div className="flex items-center space-x-2">
                 <Sun className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                 <Switch
                   checked={isDarkMode}
                   onCheckedChange={toggleTheme}
-                  aria-label="Toggle dark mode"
+                  aria-label={t('header.theme_toggle')}
                 />
                 <Moon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
               </div>
@@ -119,7 +125,7 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
               )}
 
               <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs md:text-sm">
-                Demo Version
+                {t('common.demo_version')}
               </Badge>
             </div>
           </div>
@@ -145,7 +151,7 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
                       )}
                     >
                       <Icon className="h-4 w-4" />
-                      <span>{item.label}</span>
+                      <span>{t(item.labelKey)}</span>
                     </Link>
                   );
                 })}
@@ -180,7 +186,7 @@ export function Layout({ children, isDarkMode, toggleTheme, userData }: LayoutPr
                   )}
                 >
                   <Icon className="h-5 w-5 mb-1" />
-                  <span className="truncate">{item.label}</span>
+                  <span className="truncate">{t(item.labelKey)}</span>
                 </Link>
               );
             })}

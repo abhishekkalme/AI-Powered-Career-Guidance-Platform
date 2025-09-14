@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "لوڈ گژھان...",
+    "save": "محفوظ کٔرِو",
+    "cancel": "منسوخ کٔرِو",
+    "continue": "جاری تھٲوِو",
+    "back": "واپس",
+    "next": "برونٛہہ",
+    "previous": "پٔتِم",
+    "complete": "مکمل کٔرِو",
+    "start": "شروع کٔرِو",
+    "finish": "ختم کٔرِو",
+    "submit": "جمع کٔرِو",
+    "close": "بند کٔرِو",
+    "edit": "ایڈِٹ کٔرِو",
+    "delete": "ڈِلیٹ کٔرِو",
+    "add": "شامِل کٔرِو",
+    "remove": "ہٹٲوِو",
+    "search": "تلاش کٔرِو",
+    "filter": "فِلٹر",
+    "refresh": "ریفریش",
+    "download": "ڈاؤن لوڈ",
+    "share": "شیئر کٔرِو",
+    "view": "وُچھِو",
+    "explore": "دریافت کٔرِو",
+    "learn_more": "مزید زانِو",
+    "get_started": "شروع کٔرِو",
+    "try_demo": "ڈیمو آزمٲیِو",
+    "book_session": "سیشن بُک کٔرِو",
+    "view_profile": "پروفائل وُچھِو",
+    "online": "آن لائن",
+    "offline": "آف لائن",
+    "free": "مفت",
+    "paid": "پیسہ دِتھ",
+    "premium": "پریمیم",
+    "demo_version": "ڈیمو ورژن"
+  },
+  "navigation": {
+    "dashboard": "ڈیش بورڈ",
+    "career_report": "کیریئر رپورٹ",
+    "skills": "مہارژ",
+    "career_path": "کیریئر پاتھ",
+    "virtual_internships": "انٹرن شپ",
+    "mentoring": "رہنمائی",
+    "learning": "سِکھنہٕ",
+    "lecturers": "لیکچررز",
+    "ai_counselor": "AI کاؤنسلر",
+    "profile": "پروفائل"
+  },
+  "header": {
+    "title": "کیریئرAI",
+    "subtitle": "AI سٟتؠ چلنہٕ وول کیریئر گائیڈنس پلیٹ فارم",
+    "theme_toggle": "ڈارک موڈ ٹوگل کٔرِو"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI سٟتؠ چلنہٕ وول کیریئر گائیڈنس",
+      "title": "پنُن بہترین لبِو",
+      "title_highlight": "کیریئر پاتھ",
+      "description": "أسؠ AI سٟتؠ چلنہٕ وٲلؠ پلیٹ فارم سٟتؠ ذاتی کیریئر تجاویز، مہارت کؠ تشخیص، تہٕ ماہر رہنمائی حٲصِل کٔرِو۔",
+      "start_journey": "پنُن سفر شروع کٔرِو",
+      "view_demo": "ڈیمو وُچھِو"
+    },
+    "language": {
+      "select_language": "زبان ژأرِو",
+      "english": "English",
+      "hindi": "हिंदी",
+      "urdu": "اردو",
+      "kashmiri": "کٲشُر"
+    }
+  }
+}

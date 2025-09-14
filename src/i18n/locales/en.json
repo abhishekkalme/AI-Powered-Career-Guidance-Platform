@@ -1,0 +1,547 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "complete": "Complete",
+    "start": "Start",
+    "finish": "Finish",
+    "submit": "Submit",
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "remove": "Remove",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "download": "Download",
+    "share": "Share",
+    "view": "View",
+    "explore": "Explore",
+    "learn_more": "Learn More",
+    "get_started": "Get Started",
+    "try_demo": "Try Demo",
+    "book_session": "Book Session",
+    "view_profile": "View Profile",
+    "online": "Online",
+    "offline": "Offline",
+    "free": "Free",
+    "paid": "Paid",
+    "premium": "Premium",
+    "demo_version": "Demo Version"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "career_report": "Career Report",
+    "skills": "Skills",
+    "career_path": "Career Path",
+    "virtual_internships": "Internships",
+    "mentoring": "Mentoring",
+    "learning": "Learning",
+    "lecturers": "Lecturers",
+    "ai_counselor": "AI Counselor",
+    "profile": "Profile"
+  },
+  "header": {
+    "title": "CareerAI",
+    "subtitle": "AI-Powered Career Guidance Platform",
+    "theme_toggle": "Toggle dark mode"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI-Powered Career Guidance",
+      "title": "Discover Your Perfect",
+      "title_highlight": "Career Path",
+      "description": "Get personalized career recommendations, skill assessments, and expert guidance to accelerate your professional growth with our AI-powered platform.",
+      "start_journey": "Start Your Journey",
+      "view_demo": "View Demo"
+    },
+    "stats": {
+      "career_paths": "Career Paths Analyzed",
+      "success_stories": "Success Stories",
+      "industry_experts": "Industry Experts",
+      "learning_resources": "Learning Resources"
+    },
+    "features": {
+      "title": "Powerful Features to Guide Your Career",
+      "description": "Our comprehensive platform combines AI technology with expert insights to provide you with everything you need for career success.",
+      "assessment": {
+        "title": "5-D Psychometric Assessment",
+        "description": "Comprehensive evaluation covering orientation, interests, personality, aptitude, and emotional intelligence."
+      },
+      "virtual_internships": {
+        "title": "Virtual Internships",
+        "description": "Gain real-world experience through industry-guided simulations and projects with certificates."
+      },
+      "expert_mentoring": {
+        "title": "Expert Mentoring",
+        "description": "1:1 guidance from certified international coaches and industry professionals."
+      },
+      "ai_planning": {
+        "title": "AI Career Planning",
+        "description": "Intelligent career roadmaps, subject combinations, and personalized development plans."
+      }
+    },
+    "how_it_works": {
+      "title": "How CareerAI Works",
+      "description": "Get started in just a few simple steps",
+      "step1": {
+        "title": "Create Your Profile",
+        "description": "Tell us about your background, interests, and career aspirations"
+      },
+      "step2": {
+        "title": "Take AI Assessments",
+        "description": "Complete comprehensive tests to evaluate your skills and personality"
+      },
+      "step3": {
+        "title": "Get Your Roadmap",
+        "description": "Receive personalized career recommendations and learning paths"
+      }
+    },
+    "testimonials": {
+      "title": "Success Stories",
+      "description": "See how CareerAI has transformed careers"
+    },
+    "cta": {
+      "title": "Ready to Transform Your Career?",
+      "description": "Join thousands of professionals who have discovered their perfect career path with CareerAI",
+      "get_started": "Get Started Free"
+    }
+  },
+  "onboarding": {
+    "steps": {
+      "profile": "User Profile",
+      "assessment": "Assessment",
+      "results": "Career Insights"
+    }
+  },
+  "profile": {
+    "title": "Build Your Profile",
+    "description": "Help us understand your background to provide personalized career guidance",
+    "basic_info": {
+      "title": "Basic Information",
+      "full_name": "Full Name",
+      "age": "Age",
+      "location": "Location",
+      "email": "Email",
+      "placeholders": {
+        "full_name": "Enter your full name",
+        "age": "Your age",
+        "location": "City, Country",
+        "email": "your.email@example.com"
+      }
+    },
+    "education": {
+      "title": "Educational Background",
+      "highest_education": "Highest Education Level",
+      "field_of_study": "Field of Study",
+      "graduation_year": "Graduation Year",
+      "gpa": "GPA/Percentage (Optional)",
+      "levels": {
+        "high_school": "High School (10th/12th)",
+        "diploma": "Diploma",
+        "bachelors": "Bachelor's Degree",
+        "masters": "Master's Degree",
+        "phd": "PhD",
+        "other": "Other"
+      },
+      "placeholders": {
+        "field": "e.g., Computer Science, Business, etc.",
+        "graduation": "2024",
+        "gpa": "e.g., 3.8 or 85%"
+      }
+    },
+    "experience": {
+      "title": "Experience & Skills",
+      "years_experience": "Years of Experience",
+      "current_role": "Current Role (if any)",
+      "industry": "Industry/Sector",
+      "skills_technologies": "Skills & Technologies",
+      "experience_levels": {
+        "0": "Fresh Graduate / No Experience",
+        "1-2": "1-2 years",
+        "3-5": "3-5 years",
+        "5-10": "5-10 years",
+        "10+": "10+ years"
+      },
+      "placeholders": {
+        "current_role": "e.g., Software Developer, Student, etc.",
+        "industry": "e.g., Technology, Healthcare, Finance, etc.",
+        "add_skill": "Add a skill (e.g., Python, Marketing, Leadership)"
+      }
+    },
+    "goals": {
+      "title": "Goals & Preferences",
+      "career_goals": "Career Goals",
+      "interests_passions": "Interests & Passions",
+      "work_style": "Preferred Work Style",
+      "salary_expectation": "Salary Expectation (Optional)",
+      "work_styles": {
+        "remote": "Remote",
+        "hybrid": "Hybrid",
+        "office": "In-office",
+        "flexible": "Flexible"
+      },
+      "placeholders": {
+        "career_goals": "Describe your career aspirations and what you hope to achieve in the next 3-5 years...",
+        "add_interest": "Add an interest",
+        "salary": "e.g., $60,000 - $80,000"
+      },
+      "common_interests": "Or select from common interests:"
+    },
+    "complete_profile": "Complete Profile"
+  },
+  "assessment": {
+    "title": "5-D Psychometric Career Assessment",
+    "description": "Comprehensive evaluation of your orientation style, interests, personality, aptitude, and emotional intelligence",
+    "overall_progress": "Overall Progress",
+    "estimated_time": "Estimated time remaining: {{minutes}} minutes",
+    "complete_assessment": "Complete Assessment",
+    "dimensions": {
+      "orientation": {
+        "title": "Orientation Style",
+        "description": "How you approach work and learning"
+      },
+      "interest": {
+        "title": "Career Interests", 
+        "description": "What motivates and engages you"
+      },
+      "personality": {
+        "title": "Personality Traits",
+        "description": "Your behavioral patterns and preferences"
+      },
+      "aptitude": {
+        "title": "Cognitive Aptitude",
+        "description": "Your learning and problem-solving abilities"
+      },
+      "eq": {
+        "title": "Emotional Intelligence",
+        "description": "Your emotional awareness and social skills"
+      }
+    },
+    "likert_scale": {
+      "strongly_disagree": "Strongly Disagree",
+      "disagree": "Disagree", 
+      "neutral": "Neutral",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
+    },
+    "ai_processing": {
+      "title": "AI Assessment in Progress",
+      "analyzing_patterns": "Analyzing personality patterns...",
+      "calculating_scores": "Calculating career fit scores...",
+      "generating_recommendations": "Generating personalized recommendations...",
+      "description": "Using advanced AI models to process your responses"
+    }
+  },
+  "dashboard": {
+    "title": "Career Dashboard",
+    "career_match": "Career Match",
+    "career_options": "Career Options", 
+    "skill_gaps": "Skill Gaps",
+    "avg_growth": "Avg. Growth",
+    "tabs": {
+      "career_matches": "Career Matches",
+      "strengths": "Your Strengths",
+      "live_job_market": "Live Job Market",
+      "industry_trends": "Industry Trends",
+      "quick_roadmap": "Quick Roadmap"
+    },
+    "strengths": {
+      "title": "Your Key Strengths",
+      "description": "Based on your assessment results, here are your top strength areas",
+      "exceptional": "Exceptional strength - leverage this in your career",
+      "strong": "Strong skill - continue developing",
+      "improvement": "Room for improvement - consider targeted learning"
+    },
+    "personality_insights": {
+      "title": "Personality Insights",
+      "description": "Your work style and personality traits",
+      "work_style": "Work Style",
+      "leadership_potential": "Leadership Potential",
+      "learning_style": "Learning Style",
+      "risk_tolerance": "Risk Tolerance"
+    },
+    "quick_plan": {
+      "title": "Your 3-Month Quick Start Plan",
+      "description": "Immediate steps to begin your career journey"
+    }
+  },
+  "skills": {
+    "title": "Skill Gap Analysis",
+    "description": "Comparison between your current skill level and required level for target career",
+    "high_priority": "High Priority",
+    "medium_priority": "Medium Priority", 
+    "low_priority": "Low Priority",
+    "months_est": "Months Est.",
+    "current_level": "Current Level",
+    "target_level": "Target Level",
+    "estimated_learning_time": "Estimated learning time",
+    "find_courses": "Find Courses",
+    "tabs": {
+      "skill_gaps": "Skill Gaps",
+      "visual_analysis": "Visual Analysis",
+      "by_category": "By Category",
+      "learning_plan": "Learning Plan"
+    }
+  },
+  "career_path": {
+    "title": "Career Progression Overview",
+    "total_timeline": "5-7 years to senior level",
+    "career_stages": "career stages",
+    "salary_potential": "$50K → $300K+ potential",
+    "tabs": {
+      "roadmap": "Career Roadmap",
+      "skills": "Skill Development",
+      "alternatives": "Alternative Paths",
+      "timeline": "Action Plan"
+    },
+    "requirements": "Requirements",
+    "companies": "Typical Companies",
+    "key_skills": "Key Skills",
+    "responsibilities": "Key Responsibilities",
+    "next_level": "Path to Next Level",
+    "milestones": "Key Milestones to Achieve"
+  },
+  "learning": {
+    "title": "AI-Powered Learning Resources",
+    "description": "Real-time course recommendations from multiple platforms based on your skill gaps",
+    "last_updated": "Last updated",
+    "search_placeholder": "Search courses, skills, providers...",
+    "filter_by_skill": "Filter by skill",
+    "filter_by_level": "Filter by level",
+    "filter_by_type": "Filter by type",
+    "tabs": {
+      "recommended": "Recommended",
+      "learning_path": "Learning Path",
+      "all_resources": "All Resources",
+      "indian_platforms": "Indian Platforms"
+    },
+    "levels": {
+      "all": "All Levels",
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "types": {
+      "all": "All Types",
+      "course": "Course",
+      "bootcamp": "Bootcamp",
+      "certification": "Certification",
+      "tutorial": "Tutorial"
+    }
+  },
+  "virtual_internships": {
+    "title": "Virtual Internships",
+    "description": "Gain real-world experience through simulated work environments with industry experts",
+    "available_programs": "Available Programs",
+    "completion_rate": "Completion Rate",
+    "average_rating": "Average Rating",
+    "free_certificates": "Free Certificates",
+    "start_internship": "Start Internship",
+    "continue_internship": "Continue Internship",
+    "download_certificate": "Download Certificate",
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate", 
+      "advanced": "Advanced"
+    },
+    "modules": "Modules",
+    "select_module": "Select a Module to Begin",
+    "select_module_description": "Choose a module from the left to start your virtual internship experience",
+    "launch_simulation": "Launch Simulation",
+    "start_project": "Start Project",
+    "mark_complete": "Mark Complete",
+    "completed": "Completed",
+    "previous_module": "Previous Module"
+  },
+  "mentoring": {
+    "title": "Expert Mentoring & Guidance",
+    "description": "Get personalized 1:1 mentoring from certified international career coaches and industry experts",
+    "expert_mentors": "Expert Mentors",
+    "students_mentored": "Students Mentored",
+    "first_session": "First Session",
+    "our_expert_mentors": "Our Expert Mentors",
+    "experience": "Experience",
+    "mentees": "Mentees",
+    "specialties": "Specialties",
+    "starting_from": "Starting from",
+    "free_consultation": "Free consultation",
+    "session_types": {
+      "title": "Mentoring Options",
+      "description": "Choose the format that works best for your learning style",
+      "one_on_one": {
+        "title": "1-on-1 Mentoring",
+        "description": "Personalized guidance tailored to your specific goals and challenges",
+        "duration": "60 minutes"
+      },
+      "group": {
+        "title": "Group Sessions", 
+        "description": "Learn alongside peers in small group settings with interactive discussions",
+        "duration": "90 minutes"
+      },
+      "workshop": {
+        "title": "Workshops",
+        "description": "Intensive skill-building sessions with hands-on exercises and projects",
+        "duration": "2-3 hours"
+      }
+    },
+    "benefits": {
+      "title": "Why Choose Our Mentoring Program?",
+      "personalized": {
+        "title": "Personalized Guidance",
+        "description": "Tailored advice based on your unique goals and background"
+      },
+      "expertise": {
+        "title": "Industry Expertise",
+        "description": "Learn from professionals working at top companies"
+      },
+      "flexible": {
+        "title": "Flexible Scheduling",
+        "description": "Book sessions that fit your schedule across time zones"
+      },
+      "actionable": {
+        "title": "Actionable Insights",
+        "description": "Get concrete next steps and career action plans"
+      },
+      "ongoing": {
+        "title": "Ongoing Support",
+        "description": "Access to mentor community and resources"
+      },
+      "proven": {
+        "title": "Proven Results",
+        "description": "85% of mentees achieve their career goals within 6 months"
+      }
+    }
+  },
+  "lecturers": {
+    "title": "Guest Lecturers",
+    "description": "Connect with industry experts and learn from their experiences",
+    "add_lecturer": "Add Lecturer",
+    "search_placeholder": "Search lecturers by name, company, or designation...",
+    "filter_placeholder": "Filter by expertise...",
+    "total_lecturers": "Total Lecturers",
+    "avg_rating": "Avg Rating",
+    "available_slots": "Available Slots",
+    "expertise": "Expertise",
+    "bio": "Bio",
+    "areas_of_expertise": "Areas of Expertise",
+    "available_time_slots": "Available Time Slots",
+    "book": "Book",
+    "no_lecturers": {
+      "title": "No lecturers found",
+      "description": "Try adjusting your search criteria or add a new lecturer."
+    }
+  },
+  "ai_chat": {
+    "title": "AI Career Counselor",
+    "description": "Get personalized career advice based on your profile and assessment",
+    "personalities": {
+      "career_coach": {
+        "name": "Career Coach AI",
+        "description": "Personalized career guidance and planning"
+      },
+      "skill_mentor": {
+        "name": "Skill Development Mentor",
+        "description": "Technical skills and learning recommendations"
+      },
+      "interview_coach": {
+        "name": "Interview Coach",
+        "description": "Interview preparation and tips"
+      }
+    },
+    "choose_counselor": "Choose AI Counselor Type:",
+    "messages": "messages",
+    "quick_questions": "Quick Questions:",
+    "placeholder": "Ask me anything about your career...",
+    "ai_responses_note": "AI responses are generated for demonstration. Press Enter to send.",
+    "quick_actions": {
+      "career_roadmap": "Career Roadmap",
+      "learning_resources": "Learning Resources",
+      "salary_insights": "Salary Insights",
+      "timeline_planning": "Timeline Planning"
+    },
+    "profile_context": {
+      "title": "Your Profile Context",
+      "description": "Information I'm using to personalize advice",
+      "top_career_match": "Top Career Match",
+      "key_strengths": "Key Strengths",
+      "priority_skills": "Priority Skills"
+    },
+    "suggested_questions": {
+      "title": "Suggested Questions",
+      "questions": [
+        "How do I transition to data science?",
+        "What's the job market like?",
+        "Should I get a certification?",
+        "How to build a portfolio?",
+        "What about remote opportunities?",
+        "Industry salary benchmarks?"
+      ]
+    }
+  },
+  "career_report": {
+    "title": "Your Comprehensive Career Report",
+    "description": "Personalized insights and development plan based on your 5-D assessment",
+    "generating": {
+      "title": "Generating Your Comprehensive Career Report",
+      "description": "Our AI is analyzing your assessment results to create a personalized career development plan..."
+    },
+    "executive_summary": "Executive Summary",
+    "overall_career_fit": "Overall Career Fit",
+    "work_style": "Work Style",
+    "primary_career_cluster": "Primary Career Cluster",
+    "tabs": {
+      "careers": "Careers",
+      "personality": "Personality",
+      "skills": "Skills",
+      "development": "Development",
+      "pathways": "Pathways",
+      "market": "Market",
+      "action_plan": "Action Plan",
+      "resources": "Resources"
+    }
+  },
+  "job_market": {
+    "title": "Live Job Market Intelligence",
+    "description": "Real-time data for {{role}} positions in {{location}}",
+    "open_positions": "Open Positions",
+    "median_salary": "Median Salary",
+    "days_to_fill": "Days to Fill",
+    "competition": "Competition",
+    "market_trends": "Market Trends",
+    "most_demanded_skills": "Most Demanded Skills",
+    "tabs": {
+      "market_overview": "Market Overview",
+      "salary_data": "Salary Data",
+      "demand_metrics": "Demand Metrics",
+      "location_compare": "Location Compare",
+      "industry_outlook": "Industry Outlook"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "validation": "Please fill in all required fields.",
+    "assessment_incomplete": "Please complete the assessment first.",
+    "profile_incomplete": "Please complete your profile first."
+  },
+  "success": {
+    "profile_saved": "Profile saved successfully!",
+    "assessment_completed": "Assessment completed successfully!",
+    "session_booked": "Session booked successfully!",
+    "certificate_generated": "Certificate generated successfully!"
+  },
+  "language": {
+    "select_language": "Select Language",
+    "english": "English",
+    "hindi": "हिंदी",
+    "urdu": "اردو", 
+    "kashmiri": "کٲشُر"
+  }
+}

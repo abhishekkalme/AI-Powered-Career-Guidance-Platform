@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -16,6 +17,7 @@ interface UserProfileProps {
 }
 
 export function UserProfile({ initialData, onComplete }: UserProfileProps) {
+  const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     // Basic Info
@@ -47,10 +49,10 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
   const [newInterest, setNewInterest] = useState('');
 
   const steps = [
-    { title: 'Basic Information', icon: User },
-    { title: 'Education', icon: GraduationCap },
-    { title: 'Experience & Skills', icon: Briefcase },
-    { title: 'Goals & Preferences', icon: Target }
+    { titleKey: 'profile.basic_info.title', icon: User },
+    { titleKey: 'profile.education.title', icon: GraduationCap },
+    { titleKey: 'profile.experience.title', icon: Briefcase },
+    { titleKey: 'profile.goals.title', icon: Target }
   ];
 
   const addSkill = () => {
@@ -114,9 +116,9 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-2xl">Build Your Profile</CardTitle>
+            <CardTitle className="text-2xl">{t('profile.title')}</CardTitle>
             <CardDescription>
-              Help us understand your background to provide personalized career guidance
+              {t('profile.description')}
             </CardDescription>
           </div>
           <div className="flex items-center space-x-2">
@@ -143,7 +145,7 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
                   <Icon className="h-5 w-5" />
                 </div>
                 <span className={`text-xs text-center ${isActive ? 'text-blue-600' : isCompleted ? 'text-green-600' : 'text-gray-400'}`}>
-                  {stepInfo.title}
+                  {t(stepInfo.titleKey)}
                 </span>
               </div>
             );
@@ -153,44 +155,44 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
         {/* Step Content */}
         {step === 0 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Basic Information</h3>
+            <h3 className="text-lg font-semibold">{t('profile.basic_info.title')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="name">Full Name *</Label>
+                <Label htmlFor="name">{t('profile.basic_info.full_name')} *</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  placeholder="Enter your full name"
+                  placeholder={t('profile.basic_info.placeholders.full_name')}
                 />
               </div>
               <div>
-                <Label htmlFor="age">Age *</Label>
+                <Label htmlFor="age">{t('profile.basic_info.age')} *</Label>
                 <Input
                   id="age"
                   type="number"
                   value={formData.age}
                   onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
-                  placeholder="Your age"
+                  placeholder={t('profile.basic_info.placeholders.age')}
                 />
               </div>
               <div>
-                <Label htmlFor="location">Location *</Label>
+                <Label htmlFor="location">{t('profile.basic_info.location')} *</Label>
                 <Input
                   id="location"
                   value={formData.location}
                   onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-                  placeholder="City, Country"
+                  placeholder={t('profile.basic_info.placeholders.location')}
                 />
               </div>
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('profile.basic_info.email')}</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="your.email@example.com"
+                  placeholder={t('profile.basic_info.placeholders.email')}
                 />
               </div>
             </div>
@@ -199,50 +201,50 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
 
         {step === 1 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Educational Background</h3>
+            <h3 className="text-lg font-semibold">{t('profile.education.title')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="education">Highest Education Level *</Label>
+                <Label htmlFor="education">{t('profile.education.highest_education')} *</Label>
                 <Select value={formData.education} onValueChange={(value) => setFormData(prev => ({ ...prev, education: value }))}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select education level" />
+                    <SelectValue placeholder={t('profile.education.highest_education')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="high-school">High School (10th/12th)</SelectItem>
-                    <SelectItem value="diploma">Diploma</SelectItem>
-                    <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-                    <SelectItem value="masters">Master's Degree</SelectItem>
-                    <SelectItem value="phd">PhD</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="high-school">{t('profile.education.levels.high_school')}</SelectItem>
+                    <SelectItem value="diploma">{t('profile.education.levels.diploma')}</SelectItem>
+                    <SelectItem value="bachelors">{t('profile.education.levels.bachelors')}</SelectItem>
+                    <SelectItem value="masters">{t('profile.education.levels.masters')}</SelectItem>
+                    <SelectItem value="phd">{t('profile.education.levels.phd')}</SelectItem>
+                    <SelectItem value="other">{t('profile.education.levels.other')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label htmlFor="field">Field of Study *</Label>
+                <Label htmlFor="field">{t('profile.education.field_of_study')} *</Label>
                 <Input
                   id="field"
                   value={formData.field}
                   onChange={(e) => setFormData(prev => ({ ...prev, field: e.target.value }))}
-                  placeholder="e.g., Computer Science, Business, etc."
+                  placeholder={t('profile.education.placeholders.field')}
                 />
               </div>
               <div>
-                <Label htmlFor="graduation">Graduation Year</Label>
+                <Label htmlFor="graduation">{t('profile.education.graduation_year')}</Label>
                 <Input
                   id="graduation"
                   type="number"
                   value={formData.graduation}
                   onChange={(e) => setFormData(prev => ({ ...prev, graduation: e.target.value }))}
-                  placeholder="2024"
+                  placeholder={t('profile.education.placeholders.graduation')}
                 />
               </div>
               <div>
-                <Label htmlFor="gpa">GPA/Percentage (Optional)</Label>
+                <Label htmlFor="gpa">{t('profile.education.gpa')}</Label>
                 <Input
                   id="gpa"
                   value={formData.gpa}
                   onChange={(e) => setFormData(prev => ({ ...prev, gpa: e.target.value }))}
-                  placeholder="e.g., 3.8 or 85%"
+                  placeholder={t('profile.education.placeholders.gpa')}
                 />
               </div>
             </div>
@@ -251,52 +253,52 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
 
         {step === 2 && (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Experience & Skills</h3>
+            <h3 className="text-lg font-semibold">{t('profile.experience.title')}</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="experience">Years of Experience</Label>
+                <Label htmlFor="experience">{t('profile.experience.years_experience')}</Label>
                 <Select value={formData.experience} onValueChange={(value) => setFormData(prev => ({ ...prev, experience: value }))}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select experience level" />
+                    <SelectValue placeholder={t('profile.experience.years_experience')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="0">Fresh Graduate / No Experience</SelectItem>
-                    <SelectItem value="1-2">1-2 years</SelectItem>
-                    <SelectItem value="3-5">3-5 years</SelectItem>
-                    <SelectItem value="5-10">5-10 years</SelectItem>
-                    <SelectItem value="10+">10+ years</SelectItem>
+                    <SelectItem value="0">{t('profile.experience.experience_levels.0')}</SelectItem>
+                    <SelectItem value="1-2">{t('profile.experience.experience_levels.1-2')}</SelectItem>
+                    <SelectItem value="3-5">{t('profile.experience.experience_levels.3-5')}</SelectItem>
+                    <SelectItem value="5-10">{t('profile.experience.experience_levels.5-10')}</SelectItem>
+                    <SelectItem value="10+">{t('profile.experience.experience_levels.10+')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label htmlFor="currentRole">Current Role (if any)</Label>
+                <Label htmlFor="currentRole">{t('profile.experience.current_role')}</Label>
                 <Input
                   id="currentRole"
                   value={formData.currentRole}
                   onChange={(e) => setFormData(prev => ({ ...prev, currentRole: e.target.value }))}
-                  placeholder="e.g., Software Developer, Student, etc."
+                  placeholder={t('profile.experience.placeholders.current_role')}
                 />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="industry">Industry/Sector</Label>
+              <Label htmlFor="industry">{t('profile.experience.industry')}</Label>
               <Input
                 id="industry"
                 value={formData.industry}
                 onChange={(e) => setFormData(prev => ({ ...prev, industry: e.target.value }))}
-                placeholder="e.g., Technology, Healthcare, Finance, etc."
+                placeholder={t('profile.experience.placeholders.industry')}
               />
             </div>
 
             <div>
-              <Label>Skills & Technologies</Label>
+              <Label>{t('profile.experience.skills_technologies')}</Label>
               <div className="flex gap-2 mb-3">
                 <Input
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  placeholder="Add a skill (e.g., Python, Marketing, Leadership)"
+                  placeholder={t('profile.experience.placeholders.add_skill')}
                   onKeyPress={(e) => e.key === 'Enter' && addSkill()}
                 />
                 <Button type="button" onClick={addSkill} size="sm">
@@ -320,26 +322,26 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
 
         {step === 3 && (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Goals & Preferences</h3>
+            <h3 className="text-lg font-semibold">{t('profile.goals.title')}</h3>
             
             <div>
-              <Label htmlFor="careerGoals">Career Goals</Label>
+              <Label htmlFor="careerGoals">{t('profile.goals.career_goals')}</Label>
               <Textarea
                 id="careerGoals"
                 value={formData.careerGoals}
                 onChange={(e) => setFormData(prev => ({ ...prev, careerGoals: e.target.value }))}
-                placeholder="Describe your career aspirations and what you hope to achieve in the next 3-5 years..."
+                placeholder={t('profile.goals.placeholders.career_goals')}
                 rows={3}
               />
             </div>
 
             <div>
-              <Label>Interests & Passions</Label>
+              <Label>{t('profile.goals.interests_passions')}</Label>
               <div className="flex gap-2 mb-3">
                 <Input
                   value={newInterest}
                   onChange={(e) => setNewInterest(e.target.value)}
-                  placeholder="Add an interest"
+                  placeholder={t('profile.goals.placeholders.add_interest')}
                   onKeyPress={(e) => e.key === 'Enter' && addInterest()}
                 />
                 <Button type="button" onClick={addInterest} size="sm">
@@ -348,7 +350,7 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
               </div>
               
               <div className="mb-3">
-                <p className="text-sm text-gray-600 mb-2">Or select from common interests:</p>
+                <p className="text-sm text-gray-600 mb-2">{t('profile.goals.common_interests')}</p>
                 <div className="flex flex-wrap gap-2">
                   {predefinedInterests.map((interest) => (
                     <Badge
@@ -387,26 +389,26 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="workStyle">Preferred Work Style</Label>
+                <Label htmlFor="workStyle">{t('profile.goals.work_style')}</Label>
                 <Select value={formData.workStyle} onValueChange={(value) => setFormData(prev => ({ ...prev, workStyle: value }))}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select work style" />
+                    <SelectValue placeholder={t('profile.goals.work_style')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="remote">Remote</SelectItem>
-                    <SelectItem value="hybrid">Hybrid</SelectItem>
-                    <SelectItem value="office">In-office</SelectItem>
-                    <SelectItem value="flexible">Flexible</SelectItem>
+                    <SelectItem value="remote">{t('profile.goals.work_styles.remote')}</SelectItem>
+                    <SelectItem value="hybrid">{t('profile.goals.work_styles.hybrid')}</SelectItem>
+                    <SelectItem value="office">{t('profile.goals.work_styles.office')}</SelectItem>
+                    <SelectItem value="flexible">{t('profile.goals.work_styles.flexible')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label htmlFor="salaryExpectation">Salary Expectation (Optional)</Label>
+                <Label htmlFor="salaryExpectation">{t('profile.goals.salary_expectation')}</Label>
                 <Input
                   id="salaryExpectation"
                   value={formData.salaryExpectation}
                   onChange={(e) => setFormData(prev => ({ ...prev, salaryExpectation: e.target.value }))}
-                  placeholder="e.g., $60,000 - $80,000"
+                  placeholder={t('profile.goals.placeholders.salary')}
                 />
               </div>
             </div>
@@ -420,10 +422,10 @@ export function UserProfile({ initialData, onComplete }: UserProfileProps) {
             onClick={handleBack} 
             disabled={step === 0}
           >
-            Back
+            {t('common.back')}
           </Button>
           <Button onClick={handleNext}>
-            {step === steps.length - 1 ? 'Complete Profile' : 'Next'}
+            {step === steps.length - 1 ? t('profile.complete_profile') : t('common.next')}
           </Button>
         </div>
       </CardContent>
