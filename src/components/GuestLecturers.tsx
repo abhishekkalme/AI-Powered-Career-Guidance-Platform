@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -79,6 +80,7 @@ const mockLecturers: GuestLecturer[] = [
 ];
 
 export function GuestLecturers() {
+  const { t } = useTranslation();
   const [lecturers, setLecturers] = useState<GuestLecturer[]>(mockLecturers);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedLecturer, setSelectedLecturer] = useState<GuestLecturer | null>(null);
@@ -103,16 +105,16 @@ export function GuestLecturers() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Guest Lecturers</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{t('lecturers.title')}</h2>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            Connect with industry experts and learn from their experiences
+            {t('lecturers.description')}
           </p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Add Lecturer
+              {t('lecturers.add_lecturer')}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -131,7 +133,7 @@ export function GuestLecturers() {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1">
           <Input
-            placeholder="Search lecturers by name, company, or designation..."
+            placeholder={t('lecturers.search_placeholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full"
@@ -139,7 +141,7 @@ export function GuestLecturers() {
         </div>
         <div className="sm:w-64">
           <Input
-            placeholder="Filter by expertise..."
+            placeholder={t('lecturers.filter_placeholder')}
             value={filterExpertise}
             onChange={(e) => setFilterExpertise(e.target.value)}
           />
@@ -154,7 +156,7 @@ export function GuestLecturers() {
               <Users className="h-8 w-8 text-blue-600" />
               <div>
                 <p className="text-2xl font-bold">{lecturers.length}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Lecturers</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t('lecturers.total_lecturers')}</p>
               </div>
             </div>
           </CardContent>
@@ -165,7 +167,7 @@ export function GuestLecturers() {
               <Star className="h-8 w-8 text-yellow-600" />
               <div>
                 <p className="text-2xl font-bold">4.8</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Avg Rating</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t('lecturers.avg_rating')}</p>
               </div>
             </div>
           </CardContent>
@@ -176,7 +178,7 @@ export function GuestLecturers() {
               <Calendar className="h-8 w-8 text-green-600" />
               <div>
                 <p className="text-2xl font-bold">24</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Available Slots</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t('lecturers.available_slots')}</p>
               </div>
             </div>
           </CardContent>
@@ -215,7 +217,7 @@ export function GuestLecturers() {
               </div>
               
               <div>
-                <p className="text-sm font-medium mb-2">Expertise:</p>
+                <p className="text-sm font-medium mb-2">{t('lecturers.expertise')}:</p>
                 <div className="flex flex-wrap gap-1">
                   {lecturer.expertise.slice(0, 3).map((skill) => (
                     <Badge key={skill} variant="secondary" className="text-xs">
@@ -238,7 +240,7 @@ export function GuestLecturers() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" size="sm" className="flex-1">
-                      View Profile
+                      {t('common.view_profile')}
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -246,7 +248,7 @@ export function GuestLecturers() {
                   </DialogContent>
                 </Dialog>
                 <Button size="sm" className="flex-1">
-                  Book Session
+                  {t('common.book_session')}
                 </Button>
               </div>
             </CardContent>
@@ -258,10 +260,10 @@ export function GuestLecturers() {
         <div className="text-center py-12">
           <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-            No lecturers found
+            {t('lecturers.no_lecturers.title')}
           </h3>
           <p className="text-gray-600 dark:text-gray-400">
-            Try adjusting your search criteria or add a new lecturer.
+            {t('lecturers.no_lecturers.description')}
           </p>
         </div>
       )}
@@ -299,14 +301,14 @@ function LecturerProfile({ lecturer }: { lecturer: GuestLecturer }) {
 
       <div className="space-y-4">
         <div>
-          <h4 className="font-semibold mb-2">Bio</h4>
+          <h4 className="font-semibold mb-2">{t('lecturers.bio')}</h4>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
             {lecturer.bio}
           </p>
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Areas of Expertise</h4>
+          <h4 className="font-semibold mb-2">{t('lecturers.areas_of_expertise')}</h4>
           <div className="flex flex-wrap gap-2">
             {lecturer.expertise.map((skill) => (
               <Badge key={skill} variant="secondary">
@@ -317,7 +319,7 @@ function LecturerProfile({ lecturer }: { lecturer: GuestLecturer }) {
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Available Time Slots</h4>
+          <h4 className="font-semibold mb-2">{t('lecturers.available_time_slots')}</h4>
           <div className="grid grid-cols-1 gap-2">
             {lecturer.availableSlots.map((slot, index) => (
               <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -326,7 +328,7 @@ function LecturerProfile({ lecturer }: { lecturer: GuestLecturer }) {
                   {slot}
                 </span>
                 <Button size="sm" variant="outline">
-                  Book
+                  {t('lecturers.book')}
                 </Button>
               </div>
             ))}

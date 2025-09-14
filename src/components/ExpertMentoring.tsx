@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -200,6 +201,7 @@ const sessionTypes = [
 ];
 
 export function ExpertMentoring() {
+  const { t } = useTranslation();
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
   const [bookingStep, setBookingStep] = useState<'type' | 'time' | 'details' | 'confirmation'>('type');
   const [selectedSessionType, setSelectedSessionType] = useState<string>('');
@@ -249,15 +251,15 @@ export function ExpertMentoring() {
         
         <div className="space-y-3 mb-4">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Experience</span>
+            <span className="text-gray-600 dark:text-gray-400">{t('mentoring.experience')}</span>
             <span className="font-medium">{mentor.experience} years</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Mentees</span>
+            <span className="text-gray-600 dark:text-gray-400">{t('mentoring.mentees')}</span>
             <span className="font-medium">{mentor.mentees}+ guided</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Specialties</span>
+            <span className="text-gray-600 dark:text-gray-400">{t('mentoring.specialties')}</span>
             <span className="font-medium">{mentor.specialties.length} areas</span>
           </div>
         </div>
@@ -277,11 +279,11 @@ export function ExpertMentoring() {
 
         <div className="flex items-center justify-between mb-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
           <div>
-            <p className="text-sm font-medium">Starting from</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">Free consultation</p>
+            <p className="text-sm font-medium">{t('mentoring.starting_from')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">{t('mentoring.free_consultation')}</p>
           </div>
           <div className="text-right">
-            <p className="text-lg font-bold text-green-600 dark:text-green-400">FREE</p>
+            <p className="text-lg font-bold text-green-600 dark:text-green-400">{t('common.free')}</p>
             <p className="text-xs text-gray-600 dark:text-gray-400">30 min session</p>
           </div>
         </div>
@@ -291,7 +293,7 @@ export function ExpertMentoring() {
             className="flex-1" 
             onClick={() => setSelectedMentor(mentor)}
           >
-            Book Session
+            {t('common.book_session')}
           </Button>
           <Button variant="outline" size="icon">
             <MessageSquare className="h-4 w-4" />
@@ -542,10 +544,10 @@ export function ExpertMentoring() {
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2">
             <Users className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-            Expert Mentoring & Guidance
+            {t('mentoring.title')}
           </CardTitle>
           <CardDescription>
-            Get personalized 1:1 mentoring from certified international career coaches and industry experts
+            {t('mentoring.description')}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -555,25 +557,25 @@ export function ExpertMentoring() {
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">500+</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Expert Mentors</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('mentoring.expert_mentors')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">100K+</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Students Mentored</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('mentoring.students_mentored')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
             <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">4.9★</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Average Rating</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('virtual_internships.average_rating')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6 text-center">
-            <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-2">FREE</div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">First Session</p>
+            <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-2">{t('common.free')}</div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('mentoring.first_session')}</p>
           </CardContent>
         </Card>
       </div>
@@ -581,8 +583,8 @@ export function ExpertMentoring() {
       {/* Session Types */}
       <Card>
         <CardHeader>
-          <CardTitle>Mentoring Options</CardTitle>
-          <CardDescription>Choose the format that works best for your learning style</CardDescription>
+          <CardTitle>{t('mentoring.session_types.title')}</CardTitle>
+          <CardDescription>{t('mentoring.session_types.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -592,14 +594,14 @@ export function ExpertMentoring() {
                 <div key={type.type} className="p-4 border rounded-lg">
                   <div className="flex items-center gap-3 mb-3">
                     <Icon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-                    <h3 className="font-medium">{type.title}</h3>
+                    <h3 className="font-medium">{t(`mentoring.session_types.${type.type}.title`)}</h3>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    {type.description}
+                    {t(`mentoring.session_types.${type.type}.description`)}
                   </p>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
                     <Clock className="h-3 w-3" />
-                    {type.duration}
+                    {t(`mentoring.session_types.${type.type}.duration`)}
                   </div>
                 </div>
               );
@@ -610,7 +612,7 @@ export function ExpertMentoring() {
 
       {/* Mentors Grid */}
       <div>
-        <h2 className="text-2xl font-semibold mb-6">Our Expert Mentors</h2>
+        <h2 className="text-2xl font-semibold mb-6">{t('mentoring.our_expert_mentors')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {mentors.map((mentor) => (
             <MentorCard key={mentor.id} mentor={mentor} />
@@ -621,25 +623,25 @@ export function ExpertMentoring() {
       {/* Benefits */}
       <Card>
         <CardHeader>
-          <CardTitle>Why Choose Our Mentoring Program?</CardTitle>
+          <CardTitle>{t('mentoring.benefits.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex items-start gap-3">
               <CheckCircle className="h-6 w-6 text-green-600 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-medium mb-1">Personalized Guidance</h3>
+                <h3 className="font-medium mb-1">{t('mentoring.benefits.personalized.title')}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Tailored advice based on your unique goals and background
+                  {t('mentoring.benefits.personalized.description')}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="h-6 w-6 text-green-600 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-medium mb-1">Industry Expertise</h3>
+                <h3 className="font-medium mb-1">{t('mentoring.benefits.expertise.title')}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Learn from professionals working at top companies
+                  {t('mentoring.benefits.expertise.description')}
                 </p>
               </div>
             </div>

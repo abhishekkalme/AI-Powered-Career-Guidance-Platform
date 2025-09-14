@@ -193,6 +193,49 @@ html {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+[dir="rtl"] .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .pl-3 {
+  padding-left: 0;
+  padding-right: 0.75rem;
+}
+
+[dir="rtl"] .pr-3 {
+  padding-right: 0;
+  padding-left: 0.75rem;
+}
+
+/* Language-specific font adjustments */
+[lang="hi"], [lang="ur"], [lang="ks"] {
+  font-family: 'Noto Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+[lang="ur"], [lang="ks"] {
+  direction: rtl;
+}
 /* Smooth transitions for routing */
 .page-transition {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;

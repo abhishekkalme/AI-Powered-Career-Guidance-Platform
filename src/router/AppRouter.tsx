@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { LanguageProvider } from '../components/LanguageProvider';
 import { Layout } from '../components/Layout';
 import { HomePage } from '../pages/HomePage';
 import { OnboardingPage } from '../pages/OnboardingPage';
@@ -22,30 +23,32 @@ interface AppRouterProps {
 
 export function AppRouter({ isDarkMode, toggleTheme }: AppRouterProps) {
   return (
-    <Router>
-      <Layout isDarkMode={isDarkMode} toggleTheme={toggleTheme}>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/onboarding" element={<OnboardingPage />} />
-          <Route path="/assessment" element={<AssessmentPage />} />
-          
-          {/* Main Application Routes */}
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/career-path" element={<CareerPathPage />} />
-          <Route path="/learning" element={<LearningPage />} />
-          <Route path="/lecturers" element={<LecturersPage />} />
-          <Route path="/ai-chat" element={<AIChatPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/virtual-internships" element={<VirtualInternshipsPage />} />
-          <Route path="/mentoring" element={<ExpertMentoringPage />} />
-          <Route path="/career-report" element={<CareerReportPage />} />
-          
-          {/* Fallback Route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Layout isDarkMode={isDarkMode} toggleTheme={toggleTheme}>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/onboarding" element={<OnboardingPage />} />
+            <Route path="/assessment" element={<AssessmentPage />} />
+            
+            {/* Main Application Routes */}
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/career-path" element={<CareerPathPage />} />
+            <Route path="/learning" element={<LearningPage />} />
+            <Route path="/lecturers" element={<LecturersPage />} />
+            <Route path="/ai-chat" element={<AIChatPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/virtual-internships" element={<VirtualInternshipsPage />} />
+            <Route path="/mentoring" element={<ExpertMentoringPage />} />
+            <Route path="/career-report" element={<CareerReportPage />} />
+            
+            {/* Fallback Route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </LanguageProvider>
   );
 }

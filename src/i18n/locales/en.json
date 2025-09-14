@@ -245,6 +245,7 @@
     "career_options": "Career Options", 
     "skill_gaps": "Skill Gaps",
     "avg_growth": "Avg. Growth",
+    "live_data": "Live Data",
     "tabs": {
       "career_matches": "Career Matches",
       "strengths": "Your Strengths",
@@ -255,6 +256,10 @@
     "strengths": {
       "title": "Your Key Strengths",
       "description": "Based on your assessment results, here are your top strength areas",
+      "analytical_thinking": "Analytical Thinking",
+      "problem_solving": "Problem Solving",
+      "technical_aptitude": "Technical Aptitude",
+      "communication": "Communication",
       "exceptional": "Exceptional strength - leverage this in your career",
       "strong": "Strong skill - continue developing",
       "improvement": "Room for improvement - consider targeted learning"

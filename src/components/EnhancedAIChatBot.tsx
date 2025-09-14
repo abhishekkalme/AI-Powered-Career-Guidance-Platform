@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -48,26 +49,27 @@ const quickSuggestions = [
 
 const aiPersonalities = {
   career_coach: {
-    name: "Career Coach AI",
-    description: "Personalized career guidance and planning",
+    nameKey: "ai_chat.personalities.career_coach.name",
+    descriptionKey: "ai_chat.personalities.career_coach.description",
     icon: TrendingUp,
     color: "text-blue-600 dark:text-blue-400"
   },
   skill_mentor: {
-    name: "Skill Development Mentor",
-    description: "Technical skills and learning recommendations",
+    nameKey: "ai_chat.personalities.skill_mentor.name",
+    descriptionKey: "ai_chat.personalities.skill_mentor.description",
     icon: Brain,
     color: "text-purple-600 dark:text-purple-400"
   },
   interview_coach: {
-    name: "Interview Coach",
-    description: "Interview preparation and tips",
+    nameKey: "ai_chat.personalities.interview_coach.name",
+    descriptionKey: "ai_chat.personalities.interview_coach.description",
     icon: Star,
     color: "text-green-600 dark:text-green-400"
   }
 };
 
 export function EnhancedAIChatBot({ userData }: EnhancedAIChatBotProps) {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -395,14 +397,14 @@ What specific area would you like to explore today?`,
             <div className="flex items-center gap-3">
               <PersonalityIcon className={`h-6 w-6 ${currentPersonality.color}`} />
               <div>
-                <CardTitle>{currentPersonality.name}</CardTitle>
-                <CardDescription>{currentPersonality.description}</CardDescription>
+                <CardTitle>{t(currentPersonality.nameKey)}</CardTitle>
+                <CardDescription>{t(currentPersonality.descriptionKey)}</CardDescription>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                Online
+                {t('common.online')}
               </Badge>
             </div>
           </div>
@@ -412,7 +414,7 @@ What specific area would you like to explore today?`,
       {/* Personality Selector */}
       <Card>
         <CardContent className="pt-6">
-          <h3 className="font-medium mb-3">Choose AI Counselor Type:</h3>
+          <h3 className="font-medium mb-3">{t('ai_chat.choose_counselor')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {Object.entries(aiPersonalities).map(([key, personality]) => {
               const Icon = personality.icon;
@@ -428,10 +430,10 @@ What specific area would you like to explore today?`,
                 >
                   <div className="flex items-center gap-2">
                     <Icon className={`h-4 w-4 ${personality.color}`} />
-                    <span className="font-medium text-sm">{personality.name}</span>
+                    <span className="font-medium text-sm">{t(personality.nameKey)}</span>
                   </div>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                    {personality.description}
+                    {t(personality.descriptionKey)}
                   </p>
                 </button>
               );
@@ -444,8 +446,8 @@ What specific area would you like to explore today?`,
       <Card className="h-[600px] flex flex-col">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">AI Career Counselor</CardTitle>
-            <Badge variant="outline">{messages.length} messages</Badge>
+            <CardTitle className="text-lg">{t('ai_chat.title')}</CardTitle>
+            <Badge variant="outline">{messages.length} {t('ai_chat.messages')}</Badge>
           </div>
         </CardHeader>
         
@@ -538,7 +540,7 @@ What specific area would you like to explore today?`,
           {/* Quick Suggestions */}
           {showSuggestions && (
             <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-              <h4 className="text-sm font-medium mb-2">Quick Questions:</h4>
+              <h4 className="text-sm font-medium mb-2">{t('ai_chat.quick_questions')}</h4>
               <div className="flex flex-wrap gap-2">
                 {quickSuggestions.slice(0, 4).map((suggestion, index) => (
                   <button
@@ -561,7 +563,7 @@ What specific area would you like to explore today?`,
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask me anything about your career..."
+                  placeholder={t('ai_chat.placeholder')}
                   className="pr-12"
                 />
                 <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
@@ -578,7 +580,7 @@ What specific area would you like to explore today?`,
               </Button>
             </div>
             <p className="text-xs text-gray-500 mt-2">
-              AI responses are generated for demonstration. Press Enter to send.
+              {t('ai_chat.ai_responses_note')}
             </p>
           </div>
         </CardContent>
